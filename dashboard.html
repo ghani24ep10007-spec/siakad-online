@@ -7,6 +7,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
+
+<script>
+    // Cek apakah user sudah login? Kalau belum, tendang balik ke login
+    // Ini mencegah orang masuk dashboard tanpa login
+    var role = localStorage.getItem('role');
+    if (!role) {
+        window.location.href = 'index.html';
+    }
+
+    // Fungsi untuk menampilkan nama user yang login (opsional)
+    var namaUser = localStorage.getItem('nama');
+    if(namaUser) {
+        // Cari elemen dengan ID 'nama-profil' (kalo ada) dan ubah teksnya
+        // Contoh: <div id="nama-profil">Nama User</div>
+        var elemenNama = document.getElementById('nama-profil');
+        if(elemenNama) elemenNama.innerText = namaUser;
+    }
+
+    // FUNGSI LOGOUT
+    function logout() {
+        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
+        if (konfirmasi) {
+            // Hapus data login dari memori
+            localStorage.removeItem('role');
+            localStorage.removeItem('nama');
+            
+            // Kembali ke halaman login
+            window.location.href = 'index.html';
+        }
+    }
+</script>
 <body>
     <nav class="sidebar">
         <div class="logo">
