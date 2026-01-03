@@ -2,53 +2,78 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Akademik</title>
+    <title>Akademik - SIAKAD</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo"><h2>SIAKAD</h2><span>UNUGHA CILACAP</span></div>
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
+        </div>
         <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="profil.html"><i class="fas fa-user"></i> Profil Data</a></li>
-            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan</a></li>
-            <li class="separator">Akademik</li>
-            <li><a href="akademik.html" class="active"><i class="fas fa-book"></i> KRS / KHS / Transkrip</a></li>
-            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Magang & Skripsi</a></li>
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            <li class="separator">Menu Akademik</li>
+            <li><a href="akademik.html" class="active"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="header-box">
-            <div class="page-title"><h1>Data Akademik</h1></div>
+            <div class="page-title">
+                <h1>Kartu Rencana Studi (KRS)</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Daftar mata kuliah yang diambil semester ini</p>
+            </div>
+            <div>
+                <button onclick="window.print()" style="padding:10px 20px; background:#1b4332; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold; box-shadow:0 4px 10px rgba(27,67,50,0.3);">
+                    <i class="fas fa-print"></i> Cetak KRS
+                </button>
+            </div>
         </div>
 
-        <div class="content-card">
-            <h3 class="section-title">Ringkasan Transkrip Nilai</h3>
-            <div style="display:flex; gap:20px;">
-                <div style="flex:1; background:#f0f2f5; padding:15px; border-radius:8px; text-align:center;">
-                    <h4>IPK Kumulatif</h4>
-                    <h1 style="color:#1a2a6c; font-size:40px;">3.65</h1>
+        <div class="cards-grid">
+            <div class="card-stat">
+                <div class="icon-box orange-icon"><i class="fas fa-book"></i></div>
+                <div class="stat-info">
+                    <h3>Total SKS Diambil</h3>
+                    <p>24 SKS</p>
                 </div>
-                <div style="flex:1; background:#f0f2f5; padding:15px; border-radius:8px; text-align:center;">
-                    <h4>Total SKS Lulus</h4>
-                    <h1 style="color:#27ae60; font-size:40px;">84</h1>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box green-icon"><i class="fas fa-user-check"></i></div>
+                <div class="stat-info">
+                    <h3>Dosen Wali</h3>
+                    <p style="font-size:16px;">Bpk. Abdul Haq</p>
                 </div>
             </div>
         </div>
 
         <div class="content-card">
-            <h3 class="section-title">KRS (Kartu Rencana Studi) - Semester 5</h3>
+            <h3 style="margin-bottom:20px; color:#1b4332; font-weight:700;">Mata Kuliah Semester 5</h3>
             <table>
                 <thead>
-                    <tr><th>Kode</th><th>Mata Kuliah</th><th>SKS</th><th>Kelas</th><th>Dosen</th></tr>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Mata Kuliah</th>
+                        <th>SKS</th>
+                        <th>Kelas</th>
+                        <th>Jadwal</th>
+                        <th>Dosen</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>SI-501</td><td>Pemrograman Web Lanjut</td><td>3</td><td>A</td><td>Bpk. Abdul Haq, M.Cs</td></tr>
-                    <tr><td>SI-502</td><td>Metodologi Penelitian</td><td>3</td><td>A</td><td>Ibu Prof. Maya, Ph.D</td></tr>
-                    <tr><td>SI-503</td><td>Kecerdasan Buatan</td><td>3</td><td>B</td><td>Bpk. Budi, M.Kom</td></tr>
-                    <tr><td>SI-504</td><td>E-Commerce</td><td>2</td><td>A</td><td>Ibu Sari, M.Kom</td></tr>
+                    <tr><td>SI-501</td><td><b>Pemrograman Web Lanjut</b></td><td>3</td><td>A</td><td>Senin, 08:00</td><td>Bpk. Abdul Haq, M.Cs</td></tr>
+                    <tr><td>SI-502</td><td><b>Metodologi Penelitian</b></td><td>3</td><td>A</td><td>Senin, 13:00</td><td>Ibu Prof. Maya, Ph.D</td></tr>
+                    <tr><td>SI-503</td><td><b>Kecerdasan Buatan (AI)</b></td><td>3</td><td>B</td><td>Selasa, 10:00</td><td>Bpk. Budi, M.Kom</td></tr>
+                    <tr><td>SI-504</td><td><b>E-Commerce</b></td><td>2</td><td>A</td><td>Rabu, 08:00</td><td>Ibu Sari, M.Kom</td></tr>
+                    <tr><td>SI-505</td><td><b>Sistem Pendukung Keputusan</b></td><td>3</td><td>A</td><td>Kamis, 10:00</td><td>Bpk. Abdul Haq, M.Cs</td></tr>
+                    <tr><td>SI-506</td><td><b>Manajemen Proyek SI</b></td><td>3</td><td>B</td><td>Jumat, 13:00</td><td>Bpk. Cahyo, M.M.S.I</td></tr>
                 </tbody>
             </table>
         </div>

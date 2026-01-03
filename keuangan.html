@@ -2,57 +2,98 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Keuangan Mahasiswa</title>
+    <title>Keuangan - SIAKAD</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo"><h2>SIAKAD</h2><span>UNUGHA CILACAP</span></div>
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
+        </div>
         <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="profil.html"><i class="fas fa-user"></i> Profil Data</a></li>
-            <li><a href="keuangan.html" class="active"><i class="fas fa-wallet"></i> Keuangan</a></li>
-            <li class="separator">Akademik</li>
-            <li><a href="akademik.html"><i class="fas fa-book"></i> KRS / KHS / Transkrip</a></li>
-            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Magang & Skripsi</a></li>
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html" class="active"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            <li class="separator">Menu Akademik</li>
+            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="header-box">
-            <div class="page-title"><h1>Riwayat Keuangan</h1></div>
+            <div class="page-title">
+                <h1>Info Keuangan & UKT</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Cek status pembayaran semester Anda</p>
+            </div>
+            <div class="breadcrumb">Semester 5 (Ganjil 2025/2026)</div>
         </div>
 
-        <div class="content-card">
-            <h3 class="section-title">Tagihan Semester Ini (Ganjil 2025/2026)</h3>
-            <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; border-left: 5px solid #27ae60;">
-                <h2 style="color: #27ae60;">LUNAS</h2>
-                <p>Terima kasih telah melakukan pembayaran tepat waktu.</p>
+        <div class="cards-grid">
+            <div class="card-stat" style="border-bottom: 4px solid #1b4332;">
+                <div class="icon-box green-icon"><i class="fas fa-check-double"></i></div>
+                <div class="stat-info">
+                    <h3>Status UKT Saat Ini</h3>
+                    <p style="color:#1b4332;">LUNAS</p>
+                </div>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box blue-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <div class="stat-info">
+                    <h3>Total Tagihan</h3>
+                    <p>Rp 0</p>
+                </div>
             </div>
         </div>
 
         <div class="content-card">
-            <h3 class="section-title">Riwayat Pembayaran</h3>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Semester</th>
-                            <th>Jenis Pembayaran</th>
-                            <th>Nominal</th>
-                            <th>Tanggal Bayar</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>Semester 5</td><td>UKT Tetap</td><td>Rp 1.500.000</td><td>20 Agt 2025</td><td><span class="badge lunas">Lunas</span></td></tr>
-                        <tr><td>2</td><td>Semester 4</td><td>UKT Tetap</td><td>Rp 2.500.000</td><td>15 Jan 2025</td><td><span class="badge lunas">Lunas</span></td></tr>
-                        <tr><td>3</td><td>Semester 3</td><td>UKT Tetap</td><td>Rp 3.500.000</td><td>10 Agt 2024</td><td><span class="badge lunas">Lunas</span></td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <h3 style="margin-bottom:20px; color:#1b4332; font-weight:700;"><i class="fas fa-history"></i> Riwayat Transaksi</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Keterangan</th>
+                        <th>Semester</th>
+                        <th>Nominal</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><b>UKT Tetap - S1 Sistem Informasi</b></td>
+                        <td>Sem. 5</td>
+                        <td>Rp 3.500.000</td>
+                        <td>20 Agt 2025</td>
+                        <td><span class="badge-status offline">BERHASIL</span></td>
+                        <td><button style="padding:5px 10px; border:none; background:#eee; cursor:pointer; border-radius:4px;"><i class="fas fa-print"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><b>UKT Tetap - S1 Sistem Informasi</b></td>
+                        <td>Sem. 4</td>
+                        <td>Rp 3.500.000</td>
+                        <td>15 Jan 2025</td>
+                        <td><span class="badge-status offline">BERHASIL</span></td>
+                        <td><button style="padding:5px 10px; border:none; background:#eee; cursor:pointer; border-radius:4px;"><i class="fas fa-print"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><b>UKT Tetap - S1 Sistem Informasi</b></td>
+                        <td>Sem. 3</td>
+                        <td>Rp 3.500.000</td>
+                        <td>10 Agt 2024</td>
+                        <td><span class="badge-status offline">BERHASIL</span></td>
+                        <td><button style="padding:5px 10px; border:none; background:#eee; cursor:pointer; border-radius:4px;"><i class="fas fa-print"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 </body>

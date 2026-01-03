@@ -2,48 +2,101 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Tugas Akhir</title>
+    <title>Skripsi & TA - SIAKAD</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS Khusus Timeline Skripsi */
+        .timeline-box { display: flex; justify-content: space-between; position: relative; margin: 50px 20px; }
+        .timeline-line { position: absolute; top: 20px; left: 0; right: 0; height: 4px; background: #e2e8f0; z-index: 0; }
+        .t-step { position: relative; z-index: 1; text-align: center; width: 100%; }
+        .t-circle { 
+            width: 45px; height: 45px; background: white; border: 4px solid #e2e8f0; border-radius: 50%; 
+            margin: 0 auto 15px; line-height: 38px; font-weight: bold; color: #999; font-size: 16px;
+            transition: all 0.3s;
+        }
+        .t-step.active .t-circle { border-color: #1b4332; background: #1b4332; color: white; box-shadow: 0 0 0 5px rgba(27,67,50,0.2); }
+        .t-step.done .t-circle { border-color: #52b788; background: #52b788; color: white; }
+        .t-text { font-size: 13px; font-weight: 700; color: #4b5563; }
+    </style>
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo"><h2>SIAKAD</h2><span>UNUGHA CILACAP</span></div>
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
+        </div>
         <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="profil.html"><i class="fas fa-user"></i> Profil Data</a></li>
-            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan</a></li>
-            <li class="separator">Akademik</li>
-            <li><a href="akademik.html"><i class="fas fa-book"></i> KRS / KHS / Transkrip</a></li>
-            <li><a href="skripsi.html" class="active"><i class="fas fa-graduation-cap"></i> Magang & Skripsi</a></li>
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            <li class="separator">Menu Akademik</li>
+            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html" class="active"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="header-box">
-            <div class="page-title"><h1>Tugas Akhir & Kelulusan</h1></div>
-        </div>
-
-        <div class="content-card">
-            <h3 class="section-title">Status Magang / PKL</h3>
-            <div class="timeline">
-                <div class="step done"><div class="circle">✓</div><p>Daftar</p></div>
-                <div class="step done"><div class="circle">✓</div><p>Diterima</p></div>
-                <div class="step active"><div class="circle">3</div><p>Pelaksanaan</p></div>
-                <div class="step"><div class="circle">4</div><p>Seminar</p></div>
-                <div class="step"><div class="circle">5</div><p>Nilai Keluar</p></div>
+            <div class="page-title">
+                <h1>Tugas Akhir & Kelulusan</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Monitoring progress Magang dan Skripsi</p>
             </div>
-            <p style="background:#fff3e0; padding:10px; border-left:4px solid orange;">Status: Sedang melaksanakan Magang di PT. Telkom Indonesia (Bulan ke-2)</p>
+            <div class="breadcrumb">Status: Magang (Semester 5)</div>
         </div>
 
         <div class="content-card">
-            <h3 class="section-title">Skripsi</h3>
-            <p>Anda belum mengambil mata kuliah Skripsi. Syarat pengambilan skripsi:</p>
-            <ul style="margin-left:20px; margin-top:10px; line-height:1.8;">
-                <li>✅ Lulus minimal 110 SKS</li>
-                <li>✅ IPK minimal 2.75</li>
-                <li>❌ Lulus mata kuliah Metodologi Penelitian (Sedang diambil)</li>
-            </ul>
+            <h3 style="margin-bottom:10px; color:#1b4332; font-weight:700;">Status Magang (MBKM)</h3>
+            <div class="timeline-box">
+                <div class="timeline-line"></div>
+                <div class="t-step done">
+                    <div class="t-circle"><i class="fas fa-check"></i></div>
+                    <div class="t-text">Pendaftaran</div>
+                </div>
+                <div class="t-step done">
+                    <div class="t-circle"><i class="fas fa-check"></i></div>
+                    <div class="t-text">Seleksi</div>
+                </div>
+                <div class="t-step active">
+                    <div class="t-circle">3</div>
+                    <div class="t-text">Pelaksanaan</div>
+                </div>
+                <div class="t-step">
+                    <div class="t-circle">4</div>
+                    <div class="t-text">Laporan</div>
+                </div>
+                <div class="t-step">
+                    <div class="t-circle">5</div>
+                    <div class="t-text">Seminar</div>
+                </div>
+            </div>
+            <div style="background:#e8f5e9; padding:15px; border-radius:8px; border-left:5px solid #1b4332; margin-top:20px;">
+                <h4 style="color:#1b4332; margin-bottom:5px;">Info Aktif</h4>
+                <p style="font-size:13px;">Anda sedang melaksanakan Magang di <b>PT. Telkom Indonesia</b> (Bulan ke-2 dari 4 bulan).</p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3 style="margin-bottom:15px; color:#1b4332; font-weight:700;">Prasyarat Skripsi</h3>
+            <div class="cards-grid">
+                <div class="card-stat">
+                    <div class="stat-info">
+                        <h3>SKS Lulus</h3>
+                        <p>84 / 110</p>
+                    </div>
+                    <div style="margin-left:auto; color:orange;"><i class="fas fa-exclamation-circle"></i></div>
+                </div>
+                <div class="card-stat">
+                    <div class="stat-info">
+                        <h3>IPK Minimal</h3>
+                        <p style="color:green;">3.85 (OK)</p>
+                    </div>
+                    <div style="margin-left:auto; color:green;"><i class="fas fa-check-circle"></i></div>
+                </div>
+            </div>
+            <p style="font-size:13px; color:#666; margin-top:10px;">*Anda dapat mengajukan Judul Skripsi setelah memenuhi minimal 110 SKS (Perkiraan: Semester 7).</p>
         </div>
     </main>
 </body>
