@@ -2,78 +2,46 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIAKAD Mahasiswa</title>
+    <title>SIAKAD Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <nav class="sidebar">
-            <div class="logo">
-                <h2>SIAKAD</h2>
-            </div>
-            <ul>
-                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-user-graduate"></i> Profil</a></li>
-                <li><a href="#"><i class="fas fa-book"></i> Kartu Rencana Studi</a></li>
-                <li><a href="#"><i class="fas fa-file-alt"></i> Kartu Hasil Studi</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a></li>
-            </ul>
-        </nav>
+    <nav class="sidebar">
+        <div class="logo"><h2>SIAKAD</h2><span>UNUGHA CILACAP</span></div>
+        <ul>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan</a></li>
+            <li class="separator">Akademik</li>
+            <li><a href="akademik.html"><i class="fas fa-book"></i> KRS / KHS / Transkrip</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Magang & Skripsi</a></li>
+        </ul>
+    </nav>
 
-        <main class="main-content">
-            <header>
-                <h1>Selamat Datang, Mahasiswa!</h1>
-                <div class="user-info">
-                    <span>Semester: Ganjil 2025/2026</span>
-                </div>
-            </header>
+    <main class="main-content">
+        <div class="header-box">
+            <div class="page-title"><h1>Dashboard Akademik</h1></div>
+            <div class="breadcrumb">Selamat Datang, Rizqi Ghani Adinata</div>
+        </div>
 
-            <section class="cards">
-                <div class="card">
-                    <h3>IPK</h3>
-                    <p>3.85</p>
-                </div>
-                <div class="card">
-                    <h3>SKS Diambil</h3>
-                    <p>24 SKS</p>
-                </div>
-                <div class="card">
-                    <h3>Status</h3>
-                    <p class="status-active">Aktif</p>
-                </div>
-            </section>
-
-            <section class="schedule">
-                <h2>Jadwal Hari Ini</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Jam</th>
-                            <th>Mata Kuliah</th>
-                            <th>Ruang</th>
-                            <th>Dosen</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>08:00 - 10:00</td>
-                            <td>Pemrograman Web</td>
-                            <td>Lab Komputer 1</td>
-                            <td>Bpk. Abdul Haq, M.Cs</td>
-                        </tr>
-                        <tr>
-                            <td>10:15 - 12:00</td>
-                            <td>Basis Data</td>
-                            <td>R.204</td>
-                            <td>Bpk. Abdul Haq, M.Cs</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </main>
-    </div>
+        <div class="content-card">
+             <h3 class="section-title">Ringkasan Studi</h3>
+             <div class="data-grid" style="grid-template-columns: repeat(3, 1fr);">
+                 <div style="background:#e3f2fd; padding:20px; border-radius:8px; text-align:center;">
+                     <h3>IPK</h3>
+                     <h2 style="color:#1565c0;">3.85</h2>
+                 </div>
+                 <div style="background:#e8f5e9; padding:20px; border-radius:8px; text-align:center;">
+                     <h3>SKS Total</h3>
+                     <h2 style="color:#2e7d32;">84</h2>
+                 </div>
+                 <div style="background:#fff3e0; padding:20px; border-radius:8px; text-align:center;">
+                     <h3>Status</h3>
+                     <h2 style="color:#ef6c00;">AKTIF</h2>
+                 </div>
+             </div>
+        </div>
+    </main>
 </body>
 </html>
-
