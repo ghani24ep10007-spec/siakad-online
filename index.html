@@ -4,190 +4,338 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login SIAKAD - UNUGHA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CSS UNTUK TAMPILAN (LAYOUT) */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('https://img.freepik.com/free-vector/white-gray-geometric-pattern-background-vector_53876-136510.jpg'); /* Background pola abu-abu */
-            background-size: cover;
+            /* Background Pola Batik/Pattern Halus seperti referensi */
+            background-color: #f4f6f9;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d1d5db' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .login-container {
+        .login-card {
             background-color: #fff;
-            width: 900px;
+            width: 950px;
             height: 550px;
             display: flex;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 12px;
             overflow: hidden;
         }
 
-        /* BAGIAN KIRI (GAMBAR GEDUNG) */
-        .left-side {
-            flex: 1.2; /* Lebih lebar sedikit */
-            background-image: url('https://unugha.ac.id/wp-content/uploads/2023/04/Gedung-Al-Ghazali-UNUGHA.jpg'); /* Ganti dengan link gambar Gedung UNUGHA kamu */
-            background-size: cover;
-            background-position: center;
+        /* BAGIAN KIRI (GAMBAR) */
+        .left-section {
+            flex: 1.3;
             position: relative;
+            background-color: #004d40; /* Warna cadangan jika gambar gagal */
         }
         
-        .left-overlay {
+        .bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Gunakan gambar gedung UNUGHA atau gedung generik yang mirip */
+            content: url('https://unugha.ac.id/wp-content/uploads/2023/04/Gedung-Al-Ghazali-UNUGHA.jpg');
+        }
+
+        .overlay-text {
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 0;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            width: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
             color: white;
         }
 
-        /* BAGIAN KANAN (FORM LOGIN) */
-        .right-side {
+        .overlay-text .welcome {
+            color: #a4f646; /* Warna hijau muda sesuai referensi */
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .overlay-text h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+
+        .overlay-text p {
+            margin: 5px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* BAGIAN KANAN (FORM) */
+        .right-section {
             flex: 1;
-            padding: 40px;
+            padding: 40px 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             text-align: center;
         }
 
-        .logo {
-            width: 80px;
-            margin-bottom: 10px;
-            margin-left: auto;
-            margin-right: auto;
+        .logo-top {
+            width: 70px;
+            margin: 0 auto 15px;
         }
 
-        h2 {
-            margin: 10px 0 5px;
+        h3 {
+            margin: 0;
+            font-size: 1.4rem;
             color: #333;
-            font-size: 1.5rem;
         }
 
-        p {
+        .subtitle {
+            font-size: 0.85rem;
             color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
             margin-bottom: 20px;
-            text-align: left;
+            line-height: 1.4;
         }
 
+        /* Tombol Google */
+        .btn-google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #555;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        .btn-google img {
+            width: 18px;
+            margin-right: 10px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #eee;
+        }
+        .divider span {
+            padding: 0 10px;
+        }
+
+        /* Form Inputs */
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        
         label {
             display: block;
+            font-size: 0.85rem;
+            color: #444;
             margin-bottom: 5px;
-            color: #333;
             font-weight: 500;
-            font-size: 0.9rem;
+        }
+        
+        label span {
+            color: red;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box; /* Agar padding tidak merusak lebar */
+            font-size: 0.9rem;
+            box-sizing: border-box;
         }
 
-        .btn-login {
+        input:focus {
+            outline: none;
+            border-color: #0056b3;
+            box-shadow: 0 0 0 2px rgba(0,86,179,0.1);
+        }
+
+        .password-group {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 35px;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .forgot-pass {
+            text-align: right;
+            display: block;
+            font-size: 0.8rem;
+            color: #0056b3;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
             width: 100%;
             padding: 12px;
-            background-color: #0056b3; /* Biru seperti Sevima */
+            background-color: #0056b3;
             color: white;
             border: none;
             border-radius: 5px;
+            font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
         }
-
-        .btn-login:hover {
+        
+        .btn-submit:hover {
             background-color: #004494;
         }
 
-        .footer-credit {
+        .footer-logo {
             margin-top: 30px;
             font-size: 0.7rem;
-            color: #aaa;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
-        /* Agar Responsif di HP */
+        .footer-logo img {
+            height: 18px;
+            opacity: 0.7;
+        }
+
+        /* Responsive Mobile */
         @media (max-width: 768px) {
-            .login-container {
-                width: 90%;
+            .login-card {
+                width: 95%;
                 height: auto;
                 flex-direction: column;
             }
-            .left-side {
-                display: none; /* Hilangkan gambar gedung di HP agar ringan */
+            .left-section {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <div class="left-side">
-            <div class="left-overlay">
-                <h3>Sistem Informasi Akademik</h3>
-                <span>Universitas Nahdlatul Ulama Al Ghazali Cilacap</span>
-            </div>
-        </div>
-
-        <div class="right-side">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_UNUGHA_Cilacap.png" alt="Logo UNUGHA" class="logo">
-            
-            <h2>Masuk dan Verifikasi</h2>
-            <p>Akses layanan akademik dengan satu akun.</p>
-
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="username">Email/akun pengguna*</label>
-                    <input type="text" id="username" placeholder="Masukkan NIM/Username" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password*</label>
-                    <input type="password" id="password" placeholder="Masukkan password" required>
-                </div>
-
-                <button type="submit" class="btn-login">Masuk</button>
-            </form>
-
-            <div class="footer-credit">
-                Powered by <strong>SEVIMA</strong> &copy; 2026
-            </div>
+<div class="login-card">
+    <div class="left-section">
+        <img class="bg-image" src="https://unugha.ac.id/wp-content/uploads/2023/04/Gedung-Al-Ghazali-UNUGHA.jpg" alt="Gedung UNUGHA" onerror="this.src='https://via.placeholder.com/600x800?text=Gedung+UNUGHA'">
+        <div class="overlay-text">
+            <div class="welcome">SELAMAT DATANG</div>
+            <h2>Sistem Informasi Akademik</h2>
+            <p>Universitas Nahdlatul Ulama Al Ghazali Cilacap</p>
         </div>
     </div>
 
-    <script>
-        // LOGIKA LOGIN SEDERHANA (JAVA SCRIPT)
-        function handleLogin(event) {
-            event.preventDefault(); // Mencegah halaman refresh
+    <div class="right-section">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_UNUGHA_Cilacap.png" alt="Logo" class="logo-top">
+        
+        <h3>Masuk dan Verifikasi</h3>
+        <p class="subtitle">Baru! Nikmati kemudahan sistem autentikasi tunggal untuk mengakses semua layanan dengan satu akun.</p>
 
-            // Ambil nilai dari input
-            var user = document.getElementById('username').value;
-            var pass = document.getElementById('password').value;
+        <button class="btn-google" onclick="alert('Fitur Login Google belum aktif.')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G">
+            Google
+        </button>
 
-            // Cek Username dan Password (Simulasi)
-            // Kamu bisa ganti 'admin' dan '12345' sesukamu
-            if (user === 'admin' && pass === '12345') {
-                alert('Login Berhasil! Selamat Datang.');
-                // Mengarahkan ke halaman dashboard
-                window.location.href = 'dashboard.html'; 
-            } else {
-                alert('Username atau Password salah!');
-            }
+        <div class="divider"><span>atau lanjutkan dengan</span></div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>Email/akun pengguna<span>*</span></label>
+                <input type="text" id="username" placeholder="Masukkan NIM/NIP/Username" required>
+            </div>
+
+            <div class="form-group password-group">
+                <label>Password<span>*</span></label>
+                <input type="password" id="password" placeholder="Masukkan password" required>
+                <i class="fas fa-eye-slash toggle-password" onclick="togglePass()"></i>
+            </div>
+
+            <a href="#" class="forgot-pass">Lupa kata sandi?</a>
+
+            <button type="submit" class="btn-submit">Masuk</button>
+        </form>
+
+        <div class="footer-logo">
+            Powered by <strong>SEVIMA</strong> &copy; 2026
+        </div>
+    </div>
+</div>
+
+<script>
+    // FUNGSI LIHAT PASSWORD
+    function togglePass() {
+        var passInput = document.getElementById("password");
+        var icon = document.querySelector(".toggle-password");
+        if (passInput.type === "password") {
+            passInput.type = "text";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        } else {
+            passInput.type = "password";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
         }
-    </script>
+    }
+
+    // FUNGSI LOGIN (ADMIN vs USER)
+    function handleLogin(event) {
+        event.preventDefault(); 
+        
+        var user = document.getElementById('username').value;
+        var pass = document.getElementById('password').value;
+
+        // --- SKENARIO 1: ADMIN ---
+        if (user === 'admin' && pass === 'admin123') {
+            // Simpan status login di memori browser
+            localStorage.setItem('role', 'admin');
+            localStorage.setItem('nama', 'Administrator Sistem');
+            
+            alert('Login Berhasil sebagai ADMIN!');
+            window.location.href = 'dashboard.html'; 
+        } 
+        
+        // --- SKENARIO 2: USER / MAHASISWA ---
+        else if (user === 'ghani' || user === 'mahasiswa' && pass === '12345') {
+            // Simpan status login
+            localStorage.setItem('role', 'mahasiswa');
+            localStorage.setItem('nama', 'Rizqi Ghani Adinata'); // Nama kamu otomatis masuk nanti
+            
+            alert('Login Berhasil! Selamat Datang, Ghani.');
+            window.location.href = 'dashboard.html';
+        } 
+        
+        // --- JIKA SALAH ---
+        else {
+            alert('Username atau Password salah! \nCoba: admin/admin123 atau ghani/12345');
+        }
+    }
+</script>
 
 </body>
 </html>
