@@ -4,43 +4,82 @@
     <meta charset="UTF-8">
     <title>Profil Mahasiswa</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo"><h2>SIAKAD</h2><span>UNUGHA CILACAP</span></div>
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
+        </div>
         <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="profil.html" class="active"><i class="fas fa-user"></i> Profil Data</a></li>
-            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan</a></li>
-            <li class="separator">Akademik</li>
-            <li><a href="akademik.html"><i class="fas fa-book"></i> KRS / KHS / Transkrip</a></li>
-            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Magang & Skripsi</a></li>
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html" class="active"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            <li class="separator">Menu Akademik</li>
+            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="header-box">
-            <div class="page-title"><h1>Profil Mahasiswa</h1></div>
-            <div class="breadcrumb">Home / Profil</div>
+            <div class="page-title">
+                <h1>Biodata Mahasiswa</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Data diri terdaftar di Pangkalan Data Dikti</p>
+            </div>
+            <div class="breadcrumb">Update Terakhir: 03 Jan 2026</div>
         </div>
 
         <div class="content-card">
-            <h3 class="section-title">Biodata Diri</h3>
-            <div class="profile-grid">
-                <div class="photo-box">
-                    <img src="https://via.placeholder.com/150" alt="Foto Profil">
-                    <button style="width:100%; margin-top:10px; padding:5px; background:#1a2a6c; color:white; border:none; border-radius:4px;">Upload Foto</button>
+            <div class="profile-container">
+                <div class="profile-left">
+                    <img src="https://via.placeholder.com/300x350/1b4332/ffffff?text=FOTO+MHS" alt="Foto Profil" class="profile-img">
+                    <button style="width:100%; padding:10px; background:#1b4332; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
+                        <i class="fas fa-camera"></i> Ganti Foto
+                    </button>
+                    <p style="margin-top:10px; font-size:12px; color:green;"><i class="fas fa-check-circle"></i> Status: Aktif</p>
                 </div>
-                <div class="data-grid">
-                    <div class="form-group"><label>Nama Lengkap</label><input type="text" value="Rizqi Ghani Adinata" readonly></div>
-                    <div class="form-group"><label>NIM</label><input type="text" value="24010007" readonly></div>
-                    <div class="form-group"><label>Program Studi</label><input type="text" value="S1 Sistem Informasi" readonly></div>
-                    <div class="form-group"><label>Semester</label><input type="text" value="5 (Lima)" readonly></div>
-                    <div class="form-group"><label>Tempat Lahir</label><input type="text" value="Cilacap" readonly></div>
-                    <div class="form-group"><label>Tanggal Lahir</label><input type="text" value="12 Januari 2004" readonly></div>
-                    <div class="form-group"><label>Email Kampus</label><input type="text" value="ghani@student.unugha.ac.id" readonly></div>
-                    <div class="form-group"><label>No. HP</label><input type="text" value="0812-3456-7890" readonly></div>
+
+                <div class="profile-right">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" value="Rizqi Ghani Adinata" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor Induk Mahasiswa (NIM)</label>
+                        <input type="text" value="24010007" readonly style="background:#e8f5e9; color:#1b4332;">
+                    </div>
+                    <div class="form-group">
+                        <label>Program Studi</label>
+                        <input type="text" value="S1 Sistem Informasi" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Fakultas</label>
+                        <input type="text" value="Ilmu Komputer & Matematika" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Tempat Lahir</label>
+                        <input type="text" value="Cilacap" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Lahir</label>
+                        <input type="text" value="12 Januari 2004" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Akademik</label>
+                        <input type="text" value="ghani@student.unugha.ac.id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>No. Handphone</label>
+                        <input type="text" value="0812-3456-7890" readonly>
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label>Alamat Domisili</label>
+                        <input type="text" value="Jl. Kemerdekaan No. 45, Kesugihan, Cilacap" readonly>
+                    </div>
                 </div>
             </div>
         </div>
