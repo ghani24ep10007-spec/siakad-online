@@ -52,6 +52,26 @@ body {
     font-weight: 800; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;
 }
 
+/* --- KHUSUS TOMBOL LOGOUT --- */
+.menu-logout {
+    margin-top: 40px; /* Memberi jarak jauh dari menu Skripsi */
+    border-top: 1px solid rgba(255,255,255,0.1); /* Garis pemisah tipis */
+    padding-top: 10px;
+}
+
+.menu-logout a {
+    color: #ff8787 !important; /* Warna merah muda terang agar kontras dengan hijau */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.menu-logout a:hover {
+    background: rgba(220, 53, 69, 0.15) !important; /* Background merah transparan saat hover */
+    color: #ff6b6b !important;
+    border-left: 4px solid #ff6b6b !important; /* Garis merah di kiri */
+    padding-left: 38px;
+}
+
 /* --- KONTEN UTAMA --- */
 .main-content {
     margin-left: 260px; flex: 1; padding: 35px; width: calc(100% - 260px);
@@ -85,17 +105,31 @@ body {
 }
 
 /* Stats Grid */
+/* Stats Grid */
 .cards-grid { display: flex; gap: 25px; margin-bottom: 30px; }
+
 .card-stat {
     flex: 1; background: white; padding: 25px; border-radius: 16px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.03); display: flex; align-items: center;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal */
     border-bottom: 4px solid transparent;
     animation: fadeUp 1.2s ease-out;
+    
+    /* --- TAMBAHAN BARU DI SINI --- */
+    text-decoration: none; /* Menghilangkan garis bawah karena sekarang jadi Link */
+    color: inherit;        /* Warna teks tetap hitam/abu, bukan biru link */
+    cursor: pointer;       /* Mengubah kursor jadi telunjuk tangan */
+    position: relative;    /* Persiapan untuk efek klik */
 }
+
 .card-stat:hover { 
     transform: translateY(-8px); 
     border-bottom: 4px solid var(--active-color);
+}
+
+/* Pastikan teks di dalam kartu stat tidak berubah warna jadi biru */
+.card-stat h3, .card-stat p {
+    color: var(--text-dark);
 }
 .icon-box {
     width: 60px; height: 60px; border-radius: 14px; display: flex; 
