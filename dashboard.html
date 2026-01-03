@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>SIAKAD Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
+        </div>
+        <ul>
+            <li><a href="index.html" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            
+            <li class="separator">Menu Akademik</li>
+            
+            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-laptop-code"></i> MBKM / Magang</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header-box">
+            <div class="page-title">
+                <h1>Dashboard Akademik</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Selamat Datang, <b>Rizqi Ghani Adinata</b></p>
+            </div>
+            <div class="breadcrumb">
+                Semester 5 (Ganjil 2025/2026)
+            </div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-header">
+                <h3 style="font-size:15px; font-weight:bold; color:#2c3e50;"><i class="fas fa-tasks" style="color:#52b788; margin-right:8px;"></i> Progress Studi</h3>
+                <span style="font-weight:bold; color: #1b4332;">IPK: 3.85</span>
+            </div>
+            <div class="progress-bg">
+                <div class="progress-fill">60% Selesai (84/144 SKS)</div>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card-stat">
+                <div class="icon-box blue-icon"><i class="fas fa-book-open"></i></div>
+                <div class="stat-info">
+                    <h3>SKS Semester Ini</h3>
+                    <p>24 SKS</p>
+                </div>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box green-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-info">
+                    <h3>Status UKT</h3>
+                    <p style="color: #2d6a4f;">LUNAS</p>
+                </div>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box orange-icon"><i class="fas fa-star"></i></div>
+                <div class="stat-info">
+                    <h3>IP Semester Lalu</h3>
+                    <p>3.80</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3 class="section-title">Jadwal Kuliah Hari Ini</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jam</th>
+                        <th>Mata Kuliah</th>
+                        <th>Ruang</th>
+                        <th>Dosen</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>08:00 - 10:00</td>
+                        <td><b>Pemrograman Web Lanjut</b></td>
+                        <td>Lab Komputer 1</td>
+                        <td>Bpk. Abdul Haq, M.Cs</td>
+                        <td><span class="badge-status offline">Offline</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:15 - 12:00</td>
+                        <td>Sistem Pendukung Keputusan</td>
+                        <td>R.204</td>
+                        <td>Bpk. Abdul Haq, M.Cs</td>
+                        <td><span class="badge-status online">Online</span></td>
+                    </tr>
+                    <tr>
+                        <td>13:00 - 14:40</td>
+                        <td>Metodologi Penelitian</td>
+                        <td>R.301</td>
+                        <td>Ibu Prof. Maya, Ph.D</td>
+                        <td><span class="badge-status offline">Offline</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
