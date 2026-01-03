@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Keuangan Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><h2>SIAKAD</h2><span>UNUGHA CILACAP</span></div>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user"></i> Profil Data</a></li>
+            <li><a href="keuangan.html" class="active"><i class="fas fa-wallet"></i> Keuangan</a></li>
+            <li class="separator">Akademik</li>
+            <li><a href="akademik.html"><i class="fas fa-book"></i> KRS / KHS / Transkrip</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Magang & Skripsi</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header-box">
+            <div class="page-title"><h1>Riwayat Keuangan</h1></div>
+        </div>
+
+        <div class="content-card">
+            <h3 class="section-title">Tagihan Semester Ini (Ganjil 2025/2026)</h3>
+            <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; border-left: 5px solid #27ae60;">
+                <h2 style="color: #27ae60;">LUNAS</h2>
+                <p>Terima kasih telah melakukan pembayaran tepat waktu.</p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3 class="section-title">Riwayat Pembayaran</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Semester</th>
+                            <th>Jenis Pembayaran</th>
+                            <th>Nominal</th>
+                            <th>Tanggal Bayar</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Semester 5</td><td>UKT Tetap</td><td>Rp 1.500.000</td><td>20 Agt 2025</td><td><span class="badge lunas">Lunas</span></td></tr>
+                        <tr><td>2</td><td>Semester 4</td><td>UKT Tetap</td><td>Rp 2.500.000</td><td>15 Jan 2025</td><td><span class="badge lunas">Lunas</span></td></tr>
+                        <tr><td>3</td><td>Semester 3</td><td>UKT Tetap</td><td>Rp 3.500.000</td><td>10 Agt 2024</td><td><span class="badge lunas">Lunas</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
