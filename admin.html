@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN PANEL - SIAKAD</title>
+    <link rel="stylesheet" href="style.css"> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Sedikit perbedaan warna untuk membedakan Admin dan Mahasiswa */
+        .sidebar { background: linear-gradient(180deg, #1e3a8a, #1e40af); } /* Biru Tua */
+        .header-box { border-left: 6px solid #1e40af; }
+        .page-title h1 { color: #1e3a8a; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <h2>ADMIN</h2>
+            <span>PANEL KONTROL</span>
+        </div>
+        <ul>
+            <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard Admin</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Data Mahasiswa</a></li>
+            <li><a href="#"><i class="fas fa-check-double"></i> Validasi KRS</a></li>
+            <li><a href="#"><i class="fas fa-pen-nib"></i> Input Nilai</a></li>
+            <li class="separator">Pengaturan</li>
+            <li><a href="login.html" onclick="localStorage.clear()"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header-box">
+            <div class="page-title">
+                <h1>Selamat Datang, Administrator</h1>
+                <p>Anda memiliki akses penuh untuk mengelola data akademik.</p>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card-stat">
+                <div class="icon-box blue-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-info">
+                    <h3>Total Mahasiswa</h3>
+                    <p>1,250</p>
+                </div>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box orange-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="stat-info">
+                    <h3>KRS Belum Validasi</h3>
+                    <p>45</p>
+                </div>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box green-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-info">
+                    <h3>Nilai Masuk</h3>
+                    <p>80%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3 class="section-title">Permintaan Validasi Terbaru</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Prodi</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>24010007</td>
+                        <td>Rizqi Ghani Adinata</td>
+                        <td>Sistem Informasi</td>
+                        <td><span class="badge-status online">Pending</span></td>
+                        <td>
+                            <button style="background:green; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Setujui</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>24010009</td>
+                        <td>Budi Santoso</td>
+                        <td>Sistem Informasi</td>
+                        <td><span class="badge-status online">Pending</span></td>
+                        <td>
+                            <button style="background:green; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Setujui</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

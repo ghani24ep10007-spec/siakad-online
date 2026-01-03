@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login SIAKAD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS Khusus Login (Internal agar tidak merusak style.css utama) */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #1b4332, #081c15);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .logo-login { margin-bottom: 20px; color: #1b4332; }
+        .logo-login i { font-size: 50px; margin-bottom: 10px; }
+        .logo-login h2 { font-weight: 800; letter-spacing: 2px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 12px; font-weight: bold; color: #666; margin-bottom: 5px; }
+        .input-group input {
+            width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px; 
+            font-size: 14px; transition: 0.3s;
+        }
+        .input-group input:focus { border-color: #52b788; outline: none; }
+        .btn-login {
+            width: 100%; padding: 12px; background: #1b4332; color: white; border: none; 
+            border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-login:hover { background: #52b788; }
+        .footer-login { margin-top: 20px; font-size: 12px; color: #888; }
+        .error-msg { color: red; font-size: 12px; margin-bottom: 15px; display: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <div class="logo-login">
+            <i class="fas fa-university"></i>
+            <h2>SIAKAD</h2>
+            <p>Universitas Online</p>
+        </div>
+
+        <p id="error-text" class="error-msg">Username atau Password salah!</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Masukkan Username" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Masukkan Password" required>
+            </div>
+            <button type="submit" class="btn-login">MASUK</button>
+        </form>
+
+        <div class="footer-login">
+            <p>&copy; 2026 UNUGHA Cilacap</p>
+        </div>
+    </div>
+
+    <script src="login-logic.js"></script>
+</body>
+</html>
