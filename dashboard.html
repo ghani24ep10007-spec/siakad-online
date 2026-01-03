@@ -2,144 +2,347 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>SIAKAD Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIAKAD Dashboard - UNUGHA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<script>
-    // Cek apakah user sudah login? Kalau belum, tendang balik ke login
-    // Ini mencegah orang masuk dashboard tanpa login
-    var role = localStorage.getItem('role');
-    if (!role) {
-        window.location.href = 'index.html';
-    }
-
-    // Fungsi untuk menampilkan nama user yang login (opsional)
-    var namaUser = localStorage.getItem('nama');
-    if(namaUser) {
-        // Cari elemen dengan ID 'nama-profil' (kalo ada) dan ubah teksnya
-        // Contoh: <div id="nama-profil">Nama User</div>
-        var elemenNama = document.getElementById('nama-profil');
-        if(elemenNama) elemenNama.innerText = namaUser;
-    }
-
-    // FUNGSI LOGOUT
-    function logout() {
-        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
-        if (konfirmasi) {
-            // Hapus data login dari memori
-            localStorage.removeItem('role');
-            localStorage.removeItem('nama');
-            
-            // Kembali ke halaman login
-            window.location.href = 'index.html';
+    <style>
+        /* --- CSS UTAMA --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-    }
-</script>
+
+        body {
+            background-color: #f3f4f6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR (KIRI) --- */
+        .sidebar {
+            width: 260px;
+            background-color: #1a4d3e; /* Warna Hijau Tua UNUGHA */
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100%;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: #d1d5db;
+            letter-spacing: 2px;
+        }
+
+        .menu {
+            margin-top: 40px;
+            flex-grow: 1; /* Agar menu mengisi ruang */
+        }
+
+        .menu-title {
+            font-size: 11px;
+            color: #fbbf24; /* Warna emas dikit */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            color: #d1d5db;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .menu a:hover, .menu a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .menu a i {
+            width: 25px;
+            margin-right: 10px;
+        }
+
+        /* --- TOMBOL LOGOUT (BARU) --- */
+        .logout-container {
+            margin-top: auto; /* Mendorong ke bawah */
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            color: #ff6b6b; /* Warna merah muda agar terlihat logout */
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+            color: #ff4c4c;
+        }
+
+        .logout-btn i {
+            width: 25px;
+            margin-right: 10px;
+        }
+
+        /* --- KONTEN UTAMA (KANAN) --- */
+        .main-content {
+            margin-left: 260px; /* Sesuai lebar sidebar */
+            flex: 1;
+            padding: 30px;
+        }
+
+        /* Header Dashboard */
+        .header-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-card h1 {
+            font-size: 24px;
+            color: #1f2937;
+        }
+
+        .header-card p {
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .semester-badge {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Progress Bar Section */
+        .progress-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            margin-bottom: 25px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 20px;
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #1a4d3e; /* Hijau sesuai gambar */
+            width: 60%; /* Sesuai gambar 60% */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* --- BAGIAN KARTU YANG BISA DI KLIK (YANG KAMU MINTA) --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* Ubah div menjadi style link */
+        .stat-link {
+            text-decoration: none; /* Hilangkan garis bawah */
+            color: inherit;
+            display: block;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s, box-shadow 0.3s; /* Animasi */
+            height: 100%;
+        }
+
+        /* Efek saat mouse diarahkan (Hover) */
+        .stat-card:hover {
+            transform: translateY(-5px); /* Naik sedikit */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 1px solid #1a4d3e; /* Opsional: tambah border hijau */
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        /* Warna-warni Icon */
+        .blue-icon { background-color: #e0f2fe; color: #0284c7; }
+        .green-icon { background-color: #dcfce7; color: #16a34a; }
+        .orange-icon { background-color: #ffedd5; color: #ea580c; }
+
+        .stat-info h3 {
+            font-size: 14px;
+            color: #4b5563;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .stat-info p {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .status-lunas {
+            color: #16a34a; /* Warna tulisan LUNAS hijau */
+        }
+    </style>
+</head>
 <body>
-    <nav class="sidebar">
-        <div class="logo">
-            <h2>SIAKAD</h2>
-            <span>UNUGHA CILACAP</span>
-        </div>
-        <ul>
-            <li><a href="index.html" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
-            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
-            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
-            
-            <li class="separator">Menu Akademik</li>
-            
-            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
-            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
-            <li><a href="skripsi.html"><i class="fas fa-laptop-code"></i> MBKM / Magang</a></li>
-            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
+
+    <div class="sidebar">
+    <ul>
+        <li>
+             <a href="skripsi.html">... Skripsi / TA</a>
+        </li>
+<li class="menu-logout">
+    <a href="login.html" onclick="return confirm('Apakah Anda yakin ingin keluar?');">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</li>
         </ul>
+</div>
+
+<li class="menu-logout">
+    <a href="login.html" onclick="return confirm('Apakah Anda yakin ingin keluar?');">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</li>
+</ul> ```
+        <div class="menu">
+            <a href="#" class="active"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-user-circle"></i> Profil Data</a>
+            <a href="#"><i class="fas fa-wallet"></i> Keuangan & UKT</a>
+            
+            <div class="menu-title" style="margin-top: 20px;">Menu Akademik</div>
+            <a href="#"><i class="fas fa-book"></i> KRS / KHS</a>
+            <a href="#"><i class="fas fa-file-alt"></i> Transkrip Nilai</a>
+            <a href="#"><i class="fas fa-briefcase"></i> MBKM / Magang</a>
+            <a href="#"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a>
+            
+            <div class="logout-container">
+                <a href="login.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
     </nav>
 
     <main class="main-content">
-        <div class="header-box">
-            <div class="page-title">
+        
+        <div class="header-card">
+            <div>
                 <h1>Dashboard Akademik</h1>
-                <p style="color: #666; font-size:13px; margin-top:5px;">Selamat Datang, <b>Rizqi Ghani Adinata</b></p>
+                <p>Selamat Datang, <strong>Rizqi Ghani Adinata</strong></p>
             </div>
-            <div class="breadcrumb">
+            <div class="semester-badge">
                 Semester 5 (Ganjil 2025/2026)
             </div>
         </div>
 
         <div class="progress-card">
-            <div class="progress-header">
-                <h3 style="font-size:15px; font-weight:bold; color:#2c3e50;"><i class="fas fa-tasks" style="color:#52b788; margin-right:8px;"></i> Progress Studi</h3>
-                <span style="font-weight:bold; color: #1b4332;">IPK: 3.85</span>
+            <div class="progress-info">
+                <span><strong>Progress Studi</strong></span>
+                <span>IPK: <strong>3.85</strong></span>
             </div>
-            <div class="progress-bg">
-                <div class="progress-fill">60% Selesai (84/144 SKS)</div>
-            </div>
-        </div>
-
-        <div class="cards-grid">
-            <div class="card-stat">
-                <div class="icon-box blue-icon"><i class="fas fa-book-open"></i></div>
-                <div class="stat-info">
-                    <h3>SKS Semester Ini</h3>
-                    <p>24 SKS</p>
-                </div>
-            </div>
-            <div class="card-stat">
-                <div class="icon-box green-icon"><i class="fas fa-check-circle"></i></div>
-                <div class="stat-info">
-                    <h3>Status UKT</h3>
-                    <p style="color: #2d6a4f;">LUNAS</p>
-                </div>
-            </div>
-            <div class="card-stat">
-                <div class="icon-box orange-icon"><i class="fas fa-star"></i></div>
-                <div class="stat-info">
-                    <h3>IP Semester Lalu</h3>
-                    <p>3.80</p>
-                </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill">60% selesai (84/144 sks)</div>
             </div>
         </div>
 
-        <div class="content-card">
-            <h3 class="section-title">Jadwal Kuliah Hari Ini</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Jam</th>
-                        <th>Mata Kuliah</th>
-                        <th>Ruang</th>
-                        <th>Dosen</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>08:00 - 10:00</td>
-                        <td><b>Pemrograman Web Lanjut</b></td>
-                        <td>Lab Komputer 1</td>
-                        <td>Bpk. Abdul Haq, M.Cs</td>
-                        <td><span class="badge-status offline">Offline</span></td>
-                    </tr>
-                    <tr>
-                        <td>10:15 - 12:00</td>
-                        <td>Sistem Pendukung Keputusan</td>
-                        <td>R.204</td>
-                        <td>Bpk. Abdul Haq, M.Cs</td>
-                        <td><span class="badge-status online">Online</span></td>
-                    </tr>
-                    <tr>
-                        <td>13:00 - 14:40</td>
-                        <td>Metodologi Penelitian</td>
-                        <td>R.301</td>
-                        <td>Ibu Prof. Maya, Ph.D</td>
-                        <td><span class="badge-status offline">Offline</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="stats-container">
+
+    <a href="krs-khs.html" class="stat-card">
+        <div class="icon-box blue">
+            <i class="fas fa-book-open"></i> </div>
+        <div class="stat-info">
+            <h3>SKS Semester Ini</h3>
+            <p>24 SKS</p>
         </div>
+    </a>
+
+    <a href="keuangan.html" class="stat-card">
+        <div class="icon-box green">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Status UKT</h3>
+            <p class="status-lunas">LUNAS</p>
+        </div>
+    </a>
+
+    <a href="transkrip.html" class="stat-card">
+        <div class="icon-box orange">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="stat-info">
+            <h3>IP Semester Lalu</h3>
+            <p>3.80</p>
+        </div>
+    </a>
+
+</div>
     </main>
+
 </body>
 </html>
