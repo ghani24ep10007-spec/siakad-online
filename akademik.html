@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Akademik - SIAKAD</title>
+    <title>Akademik - KRS</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -14,23 +14,27 @@
             <span>UNUGHA CILACAP</span>
         </div>
         <ul>
-            <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
             <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
             <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
             <li class="separator">Menu Akademik</li>
             <li><a href="akademik.html" class="active"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
             <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
+            
             <li class="menu-logout">
-          <a href="login.html" onclick="return confirm('Apakah Anda yakin ingin keluar?');">
-              <i class="fas fa-sign-out-alt"></i> Logout
-          </a>
-      </li>
+                <a href="index.html" onclick="localStorage.clear();">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <main class="main-content">
         <div class="header-box">
             <div class="page-title">
                 <h1>Kartu Rencana Studi (KRS)</h1>
-                <p style="color: #666; font-size:13px; margin-top:5px;">Daftar mata kuliah yang diambil semester ini</p>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Daftar mata kuliah Semester 3</p>
             </div>
             <div>
                 <button onclick="window.print()" style="padding:10px 20px; background:#1b4332; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold; box-shadow:0 4px 10px rgba(27,67,50,0.3);">
@@ -43,8 +47,8 @@
             <div class="card-stat">
                 <div class="icon-box orange-icon"><i class="fas fa-book"></i></div>
                 <div class="stat-info">
-                    <h3>Total SKS Diambil</h3>
-                    <p>24 SKS</p>
+                    <h3>Total SKS</h3>
+                    <p>22 SKS</p>
                 </div>
             </div>
             <div class="card-stat">
@@ -57,7 +61,7 @@
         </div>
 
         <div class="content-card">
-            <h3 style="margin-bottom:20px; color:#1b4332; font-weight:700;">Mata Kuliah Semester 5</h3>
+            <h3 style="margin-bottom:20px; color:#1b4332; font-weight:700;">Mata Kuliah Semester 3</h3>
             <table>
                 <thead>
                     <tr>
@@ -70,12 +74,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>SI-501</td><td><b>Pemrograman Web Lanjut</b></td><td>3</td><td>A</td><td>Senin, 08:00</td><td>Bpk. Abdul Haq, M.Cs</td></tr>
-                    <tr><td>SI-502</td><td><b>Metodologi Penelitian</b></td><td>3</td><td>A</td><td>Senin, 13:00</td><td>Ibu Prof. Maya, Ph.D</td></tr>
-                    <tr><td>SI-503</td><td><b>Kecerdasan Buatan (AI)</b></td><td>3</td><td>B</td><td>Selasa, 10:00</td><td>Bpk. Budi, M.Kom</td></tr>
-                    <tr><td>SI-504</td><td><b>E-Commerce</b></td><td>2</td><td>A</td><td>Rabu, 08:00</td><td>Ibu Sari, M.Kom</td></tr>
-                    <tr><td>SI-505</td><td><b>Sistem Pendukung Keputusan</b></td><td>3</td><td>A</td><td>Kamis, 10:00</td><td>Bpk. Abdul Haq, M.Cs</td></tr>
-                    <tr><td>SI-506</td><td><b>Manajemen Proyek SI</b></td><td>3</td><td>B</td><td>Jumat, 13:00</td><td>Bpk. Cahyo, M.M.S.I</td></tr>
+                    <tr><td>SI-301</td><td><b>Pemrograman Web Dasar</b></td><td>3</td><td>A</td><td>Senin, 08:00</td><td>Bpk. Abdul Haq, M.Cs</td></tr>
+                    <tr><td>SI-302</td><td><b>Struktur Data</b></td><td>3</td><td>A</td><td>Senin, 13:00</td><td>Ibu Sari, M.Kom</td></tr>
+                    <tr><td>SI-303</td><td><b>Basis Data I</b></td><td>3</td><td>B</td><td>Selasa, 10:00</td><td>Bpk. Cahyo, M.Kom</td></tr>
+                    <tr><td>SI-304</td><td><b>Jaringan Komputer</b></td><td>3</td><td>A</td><td>Rabu, 08:00</td><td>Bpk. Budi, M.Kom</td></tr>
+                    <tr><td>SI-305</td><td><b>Sistem Operasi</b></td><td>3</td><td>A</td><td>Kamis, 10:00</td><td>Bpk. Fajar, M.T</td></tr>
+                    <tr><td>SI-306</td><td><b>Statistika Probabilitas</b></td><td>3</td><td>B</td><td>Jumat, 08:00</td><td>Ibu Prof. Maya, Ph.D</td></tr>
+                    <tr><td>SI-307</td><td><b>Interaksi Manusia & Komputer</b></td><td>3</td><td>A</td><td>Jumat, 13:00</td><td>Ibu Ratna, M.Kom</td></tr>
                 </tbody>
             </table>
         </div>

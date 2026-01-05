@@ -1,56 +1,51 @@
 // login-logic.js
 
-// 1. DATA USER (MAHASISWA) - Password Pendek
+// 1. DATA USER (MAHASISWA)
 const mahasiswaUsers = [
-    { user: "ghani", pass: "123", nama: "Rizqi Ghani Adinata" },
-    { user: "24010007", pass: "mhs", nama: "Rizqi Ghani Adinata" },
-    { user: "budi", pass: "123", nama: "Budi Santoso" },
-    { user: "siti", pass: "123", nama: "Siti Aminah" },
-    { user: "anton", pass: "123", nama: "Anton Wijaya" },
-    { user: "putri", pass: "123", nama: "Putri Lestari" },
-    { user: "dewi", pass: "123", nama: "Dewi Sartika" },
-    { user: "eko", pass: "123", nama: "Eko Prasetyo" },
-    { user: "fajar", pass: "123", nama: "Fajar Nugraha" },
-    { user: "gilang", pass: "123", nama: "Gilang Ramadhan" }
+    // Tambahkan user dengan username "ghani" DAN NIM "24EP10007"
+    { user: "ghani", pass: "12345", nama: "Rizqi Ghani Adinata" }, 
+    { user: "24EP10007", pass: "12345", nama: "Rizqi Ghani Adinata" },
+    
+    // User dummy lainnya
+    { user: "budi", pass: "123", nama: "Budi Santoso" }
 ];
 
-// 2. DATA ADMIN - Cuma 2 Orang (Password tidak terlalu panjang tapi beda)
+// 2. DATA ADMIN
 const adminUsers = [
-    { user: "admin1", pass: "adminok", nama: "Admin Akademik" },
-    { user: "pakdos", pass: "dosen1", nama: "Dosen Wali" }
+    { user: "admin", pass: "admin123", nama: "Administrator" }
 ];
 
 // 3. FUNGSI CEK LOGIN
 document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Mencegah reload halaman
+    event.preventDefault(); 
 
     let u = document.getElementById("username").value;
     let p = document.getElementById("password").value;
     let errorMsg = document.getElementById("error-text");
 
-    // Cek apakah dia ADMIN?
+    // Cek Admin
     let isAdmin = adminUsers.find(data => data.user === u && data.pass === p);
     if (isAdmin) {
-        // Simpan nama admin sementara (opsional)
         localStorage.setItem("namaUser", isAdmin.nama);
         localStorage.setItem("role", "admin");
-        // Redirect ke Halaman Admin
         window.location.href = "admin.html"; 
         return;
     }
 
-    // Cek apakah dia MAHASISWA?
+    // Cek Mahasiswa
     let isMhs = mahasiswaUsers.find(data => data.user === u && data.pass === p);
     if (isMhs) {
-        // Simpan nama mahasiswa agar muncul di dashboard
-        localStorage.setItem("namaUser", isMhs.nama);
+        localStorage.setItem("namaUser", isMhs.nama); // Simpan nama untuk ditampilkan di dashboard
         localStorage.setItem("role", "mahasiswa");
-        // Redirect ke Halaman Dashboard Utama
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html"; // Arahkan ke dashboard
         return;
     }
 
-    // Jika Salah Semua
-    errorMsg.style.display = "block";
-    errorMsg.innerText = "Username atau Password Salah!";
+    // Jika Gagal
+    if(errorMsg) {
+        errorMsg.style.display = "block";
+        errorMsg.innerText = "Username atau Password Salah!";
+    } else {
+        alert("Username atau Password Salah!");
+    }
 });

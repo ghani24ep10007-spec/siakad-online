@@ -2,263 +2,95 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIAKAD Dashboard - UNUGHA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        /* 1. Reset Dasar */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f4f6f9; /* Warna background abu muda */
-            display: flex; /* Menggunakan Flexbox untuk layout utama */
-            min-height: 100vh;
-        }
-
-        /* 2. Styling Sidebar (Kiri) */
-        .sidebar {
-            width: 250px;
-            background-color: #14532d; /* Hijau tua khas UNUGHA */
-            color: white;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            position: fixed; /* Agar sidebar tetap diam saat discroll */
-            height: 100%;
-        }
-
-        .sidebar h2 {
-            font-size: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 10px;
-        }
-
-        .menu {
-            flex-grow: 1;
-        }
-
-        .menu a {
-            display: flex;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            padding: 12px 15px;
-            margin-bottom: 5px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .menu a:hover, .menu a.active {
-            background-color: #166534; /* Hijau lebih terang saat hover */
-            color: white;
-            font-weight: 600;
-        }
-
-        .menu a i {
-            margin-right: 10px;
-            width: 20px;
-        }
-
-        /* Tombol Logout Spesifik */
-        .logout-btn {
-            background-color: #dc2626; /* Merah */
-            color: white !important;
-            text-align: center;
-            justify-content: center;
-            margin-top: auto; /* Dorong ke paling bawah */
-        }
-        .logout-btn:hover {
-            background-color: #b91c1c;
-        }
-
-        /* 3. Styling Konten Utama (Kanan) */
-        .main-content {
-            margin-left: 250px; /* Memberi ruang untuk sidebar */
-            padding: 30px;
-            width: 100%;
-        }
-
-        /* Header Dashboard */
-        .header {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            background-color: #14532d;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        /* Progress Bar Section */
-        .progress-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .progress-bar-bg {
-            background-color: #e5e7eb;
-            height: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill {
-            background-color: #14532d;
-            height: 100%;
-            width: 60%; /* Sesuaikan persentase */
-            text-align: center;
-            color: white;
-            font-size: 12px;
-            line-height: 20px;
-        }
-
-        /* Cards Grid (SKS, UKT, IP) */
-        .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsif */
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            border-left: 5px solid #14532d; /* Aksen hijau di kiri */
-        }
-
-        .card-icon {
-            font-size: 40px;
-            color: #14532d;
-            margin-right: 20px;
-        }
-
-        .card-info h3 {
-            font-size: 14px;
-            color: #6b7280;
-            margin-bottom: 5px;
-        }
-
-        .card-info p {
-            font-size: 24px;
-            font-weight: bold;
-            color: #111827;
-        }
-
-        .status-lunas {
-            color: #16a34a !important; /* Warna hijau teks */
-        }
-    </style>
+    <title>Dashboard - SIAKAD UNUGHA</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
     <nav class="sidebar">
-        <h2>SIAKAD UNUGHA</h2>
-        <div class="menu">
-            <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="#"><i class="fas fa-user-graduate"></i> Akademik</a>
-            <a href="#"><i class="fas fa-file-alt"></i> KRS / KHS</a>
-            <a href="#"><i class="fas fa-book"></i> Skripsi / TA</a>
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
         </div>
-        <a href="#" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <ul>
+            <li><a href="dashboard.html" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            <li class="separator">Menu Akademik</li>
+            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
+            
+            <li class="menu-logout">
+                <a href="index.html" onclick="localStorage.clear();">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
     </nav>
 
     <main class="main-content">
-        
-        <div class="header">
-            <div>
-                <h1>Dashboard</h1>
-                <p style="color: #666;">Selamat Datang di SIAKAD Online</p>
+        <div class="header-box">
+            <div class="page-title">
+                <h1>Dashboard Utama</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Selamat Datang di Sistem Informasi Akademik</p>
             </div>
-            <div class="user-info">
-                <span>Rizqi Ghani (24EP10007)</span>
-                <div class="avatar">RG</div>
+            <div class="user-info" style="text-align:right;">
+                <h4 id="welcomeName" style="color:#1b4332;">Mahasiswa</h4>
+                <span style="font-size:12px; color:#888;">NIM: 24EP10007</span>
             </div>
         </div>
 
         <div class="progress-card">
-            <div class="progress-header">
-                <span>Progress Studi</span>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; color:#1b4332;">
+                <span>Progress Studi (Semester 3)</span>
                 <span>IPK: 3.85</span>
             </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width: 60%;">60% (84/144 SKS)</div>
+            <div class="progress-bg">
+                <div class="progress-fill" style="width: 35%;">35% Selesai</div>
             </div>
         </div>
 
-        <div class="dashboard-cards">
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <div class="card-info">
-                    <h3>SKS Semester Ini</h3>
+        <div class="cards-grid">
+            <div class="card-stat">
+                <div class="icon-box green-icon"><i class="fas fa-book-open"></i></div>
+                <div class="stat-info">
+                    <h3>SKS Diambil</h3>
                     <p>24 SKS</p>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-money-check-alt"></i>
-                </div>
-                <div class="card-info">
+            <div class="card-stat">
+                <div class="icon-box blue-icon"><i class="fas fa-money-check-alt"></i></div>
+                <div class="stat-info">
                     <h3>Status UKT</h3>
-                    <p class="status-lunas">LUNAS</p>
+                    <p style="color:green; font-weight:bold;">LUNAS</p>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="card-info">
+            <div class="card-stat">
+                <div class="icon-box orange-icon"><i class="fas fa-star"></i></div>
+                <div class="stat-info">
                     <h3>IP Semester Lalu</h3>
                     <p>3.80</p>
                 </div>
             </div>
         </div>
 
+        <div class="content-card">
+            <h3 style="margin-bottom:15px; color:#1b4332; font-weight:700;">Pengumuman Terbaru</h3>
+            <div style="padding:15px; background:#e8f5e9; border-left:4px solid #1b4332; border-radius:5px;">
+                <h4 style="margin-bottom:5px;"><i class="fas fa-bullhorn"></i> Jadwal UAS Semester Ganjil</h4>
+                <p style="font-size:13px; color:#555;">Pelaksanaan Ujian Akhir Semester (UAS) akan dilaksanakan mulai tanggal 15 Januari 2026. Harap segera melunasi administrasi dan mencetak kartu ujian.</p>
+            </div>
+        </div>
     </main>
 
+    <script>
+        // Script untuk mengambil nama dari Login
+        const nama = localStorage.getItem("namaUser");
+        if(nama) {
+            document.getElementById("welcomeName").innerText = nama;
+        }
+    </script>
 </body>
 </html>
