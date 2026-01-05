@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transkrip Nilai - SIAKAD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
+        </div>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            
+            <li class="separator">Menu Akademik</li>
+            
+            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="transkrip.html" class="active"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
+            
+            <li class="menu-logout">
+                <a href="index.html" onclick="localStorage.clear();">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        
+        <div class="header-box">
+            <div class="page-title">
+                <h1>Transkrip Nilai Semester 3</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Tahun Akademik 2025/2026 Ganjil</p>
+            </div>
+            <div>
+                <button onclick="window.print()" style="padding:10px 20px; background:#1b4332; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold; box-shadow:0 4px 10px rgba(27,67,50,0.3); transition: 0.3s;">
+                    <i class="fas fa-print"></i> Cetak Transkrip
+                </button>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card-stat">
+                <div class="icon-box green-icon"><i class="fas fa-star"></i></div>
+                <div class="stat-info">
+                    <h3>Indeks Prestasi (IP)</h3>
+                    <p>3.85</p>
+                </div>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box blue-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-info">
+                    <h3>Total SKS Diambil</h3>
+                    <p>22 SKS</p>
+                </div>
+            </div>
+            <div class="card-stat">
+                <div class="icon-box orange-icon"><i class="fas fa-medal"></i></div>
+                <div class="stat-info">
+                    <h3>Status</h3>
+                    <p style="font-size:16px; color:green; font-weight:bold;">Lulus Sempurna</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3 style="margin-bottom:20px; color:#1b4332; font-weight:700;">Rincian Nilai Semester 3</h3>
+            
+            <table style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align: left; background-color: #f8f9fa;">
+                        <th style="padding: 12px;">Kode</th>
+                        <th style="padding: 12px;">Mata Kuliah</th>
+                        <th style="padding: 12px;">SKS</th>
+                        <th style="padding: 12px;">Nilai Huruf</th>
+                        <th style="padding: 12px;">Bobot</th>
+                        <th style="padding: 12px;">Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; font-weight:bold; color:#555;">SI-301</td>
+                        <td style="padding: 12px;"><b>Pemrograman Web Dasar</b></td>
+                        <td style="padding: 12px;">3</td>
+                        <td style="padding: 12px;"><span style="color:green; font-weight:bold;">A</span></td>
+                        <td style="padding: 12px;">4.00</td>
+                        <td style="padding: 12px;"><span style="background:#e6fffa; color:#00695c; padding:4px 8px; border-radius:4px; font-size:12px;">Lulus</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; font-weight:bold; color:#555;">SI-302</td>
+                        <td style="padding: 12px;"><b>Struktur Data</b></td>
+                        <td style="padding: 12px;">3</td>
+                        <td style="padding: 12px;"><span style="color:#1b4332; font-weight:bold;">B+</span></td>
+                        <td style="padding: 12px;">3.50</td>
+                        <td style="padding: 12px;"><span style="background:#e6fffa; color:#00695c; padding:4px 8px; border-radius:4px; font-size:12px;">Lulus</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; font-weight:bold; color:#555;">SI-303</td>
+                        <td style="padding: 12px;"><b>Basis Data I</b></td>
+                        <td style="padding: 12px;">3</td>
+                        <td style="padding: 12px;"><span style="color:green; font-weight:bold;">A</span></td>
+                        <td style="padding: 12px;">4.00</td>
+                        <td style="padding: 12px;"><span style="background:#e6fffa; color:#00695c; padding:4px 8px; border-radius:4px; font-size:12px;">Lulus</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; font-weight:bold; color:#555;">SI-304</td>
+                        <td style="padding: 12px;"><b>Jaringan Komputer</b></td>
+                        <td style="padding: 12px;">3</td>
+                        <td style="padding: 12px;"><span style="color:green; font-weight:bold;">A-</span></td>
+                        <td style="padding: 12px;">3.75</td>
+                        <td style="padding: 12px;"><span style="background:#e6fffa; color:#00695c; padding:4px 8px; border-radius:4px; font-size:12px;">Lulus</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; font-weight:bold; color:#555;">SI-305</td>
+                        <td style="padding: 12px;"><b>Sistem Operasi</b></td>
+                        <td style="padding: 12px;">3</td>
+                        <td style="padding: 12px;"><span style="color:#1b4332; font-weight:bold;">B</span></td>
+                        <td style="padding: 12px;">3.00</td>
+                        <td style="padding: 12px;"><span style="background:#e6fffa; color:#00695c; padding:4px 8px; border-radius:4px; font-size:12px;">Lulus</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; font-weight:bold; color:#555;">SI-306</td>
+                        <td style="padding: 12px;"><b>Statistika Probabilitas</b></td>
+                        <td style="padding: 12px;">3</td>
+                        <td style="padding: 12px;"><span style="color:green; font-weight:bold;">A</span></td>
+                        <td style="padding: 12px;">4.00</td>
+                        <td style="padding: 12px;"><span style="background:#e6fffa; color:#00695c; padding:4px 8px; border-radius:4px; font-size:12px;">Lulus</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; font-weight:bold; color:#555;">SI-307</td>
+                        <td style="padding: 12px;"><b>Interaksi Manusia & Komputer</b></td>
+                        <td style="padding: 12px;">3</td>
+                        <td style="padding: 12px;"><span style="color:green; font-weight:bold;">A</span></td>
+                        <td style="padding: 12px;">4.00</td>
+                        <td style="padding: 12px;"><span style="background:#e6fffa; color:#00695c; padding:4px 8px; border-radius:4px; font-size:12px;">Lulus</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
