@@ -1,51 +1,47 @@
-// login-logic.js
+// --- DATABASE PENGGUNA (Password Semua 123) ---
+const users = [
+    { username: "faqih", password: "123" },
+    { username: "toik", password: "123" },
+    { username: "widad", password: "123" },
+    { username: "dinda", password: "123" },
+    { username: "alia", password: "123" },
+    { username: "nwalia", password: "123" },
+    { username: "syafa", password: "123" },
+    { username: "rizqi", password: "123" },
+    { username: "ghani", password: "123" },
+    { username: "fiki", password: "123" }
+];
 
-// 1. DATA USER (MAHASISWA)
-const mahasiswaUsers = [
-    // Tambahkan user dengan username "ghani" DAN NIM "24EP10007"
-    { user: "ghani", pass: "12345", nama: "Rizqi Ghani Adinata" }, 
-    { user: "24EP10007", pass: "12345", nama: "Rizqi Ghani Adinata" },
+// --- LOGIKA LOGIN (JANGAN DIUBAH) ---
+document.addEventListener("DOMContentLoaded", function() {
     
-    // User dummy lainnya
-    { user: "budi", pass: "123", nama: "Budi Santoso" }
-];
+    // Mencari tombol dan input di HTML
+    const loginButton = document.querySelector("button"); 
+    const inputUser = document.getElementById("username"); 
+    const inputPass = document.getElementById("password"); 
 
-// 2. DATA ADMIN
-const adminUsers = [
-    { user: "admin", pass: "admin123", nama: "Administrator" }
-];
+    // Cek apakah elemen ditemukan agar tidak error
+    if(loginButton && inputUser && inputPass) {
+        
+        loginButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Mencegah form refresh halaman
 
-// 3. FUNGSI CEK LOGIN
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
+            const usernameValue = inputUser.value;
+            const passwordValue = inputPass.value;
 
-    let u = document.getElementById("username").value;
-    let p = document.getElementById("password").value;
-    let errorMsg = document.getElementById("error-text");
+            // Cek kecocokan data
+            const validUser = users.find(user => user.username === usernameValue && user.password === passwordValue);
 
-    // Cek Admin
-    let isAdmin = adminUsers.find(data => data.user === u && data.pass === p);
-    if (isAdmin) {
-        localStorage.setItem("namaUser", isAdmin.nama);
-        localStorage.setItem("role", "admin");
-        window.location.href = "admin.html"; 
-        return;
-    }
-
-    // Cek Mahasiswa
-    let isMhs = mahasiswaUsers.find(data => data.user === u && data.pass === p);
-    if (isMhs) {
-        localStorage.setItem("namaUser", isMhs.nama); // Simpan nama untuk ditampilkan di dashboard
-        localStorage.setItem("role", "mahasiswa");
-        window.location.href = "dashboard.html"; // Arahkan ke dashboard
-        return;
-    }
-
-    // Jika Gagal
-    if(errorMsg) {
-        errorMsg.style.display = "block";
-        errorMsg.innerText = "Username atau Password Salah!";
+            if (validUser) {
+                // JIKA LOGIN BERHASIL
+                localStorage.setItem("namaUser", validUser.username); // Simpan nama user
+                window.location.href = "dashboard.html"; // Pindah ke dashboard
+            } else {
+                // JIKA LOGIN GAGAL
+                alert("Username atau Password salah! (Coba password: 123)");
+            }
+        });
     } else {
-        alert("Username atau Password Salah!");
+        console.error("Error: Element ID 'username' atau 'password' tidak ditemukan di index.html");
     }
 });
