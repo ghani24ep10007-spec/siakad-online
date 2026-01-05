@@ -105,21 +105,23 @@ body {
 }
 
 /* Stats Grid */
-/* Stats Grid */
-.cards-grid { display: flex; gap: 25px; margin-bottom: 30px; }
+.cards-grid { 
+    display: flex; 
+    gap: 25px; 
+    margin-bottom: 30px; 
+}
 
 .card-stat {
-    flex: 1; background: white; padding: 25px; border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.03); display: flex; align-items: center;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal */
+    flex: 1; 
+    background: white; 
+    padding: 25px; 
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03); 
+    display: flex; 
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-bottom: 4px solid transparent;
     animation: fadeUp 1.2s ease-out;
-    
-    /* --- TAMBAHAN BARU DI SINI --- */
-    text-decoration: none; /* Menghilangkan garis bawah karena sekarang jadi Link */
-    color: inherit;        /* Warna teks tetap hitam/abu, bukan biru link */
-    cursor: pointer;       /* Mengubah kursor jadi telunjuk tangan */
-    position: relative;    /* Persiapan untuk efek klik */
 }
 
 .card-stat:hover { 
