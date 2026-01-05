@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Hadir - SIAKAD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>UNUGHA CILACAP</span>
+        </div>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
+            <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            
+            <li class="separator">Menu Akademik</li>
+            <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
+            <li><a href="transkrip.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="absensi.html" class="active"><i class="fas fa-calendar-check"></i> Daftar Hadir</a></li>
+            
+            <li class="menu-logout">
+                <a href="index.html" onclick="localStorage.removeItem('namaUser');">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header-box">
+            <div class="page-title">
+                <h1>Daftar Hadir Mahasiswa</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Rekapitulasi Pengunjung Website</p>
+            </div>
+            
+            <div>
+                <button onclick="isiHadir()" style="padding:10px 20px; background:#1b4332; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold; box-shadow:0 4px 10px rgba(27,67,50,0.3); transition:0.3s;">
+                    <i class="fas fa-check-double"></i> ISI KEHADIRAN
+                </button>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3 style="margin-bottom:20px; color:#1b4332; font-weight:700;">Riwayat Login Teman-Teman</h3>
+            
+            <table style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align: left; background-color: #f8f9fa;">
+                        <th style="padding: 12px;">No</th>
+                        <th style="padding: 12px;">Nama Mahasiswa</th>
+                        <th style="padding: 12px;">Tanggal</th>
+                        <th style="padding: 12px;">Jam Masuk</th>
+                        <th style="padding: 12px;">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelAbsensi">
+                </tbody>
+            </table>
+            
+            <button onclick="resetAbsensi()" style="margin-top:20px; padding:8px 15px; background:#dc3545; color:white; border:none; border-radius:5px; cursor:pointer; font-size:12px;">
+                <i class="fas fa-trash"></i> Hapus Semua Data
+            </button>
+        </div>
+    </main>
+
+    <script src="absensi-logic.js"></script>
+
+</body>
+</html>

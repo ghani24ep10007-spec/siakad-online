@@ -2,12 +2,14 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - SIAKAD UNUGHA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mahasiswa - SIAKAD</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    
     <nav class="sidebar">
         <div class="logo">
             <h2>SIAKAD</h2>
@@ -21,7 +23,6 @@
             <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
             <li><a href="transkrip.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
             <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
-            
             <li class="menu-logout">
                 <a href="index.html" onclick="localStorage.clear();">
                     <i class="fas fa-sign-out-alt"></i> Logout
@@ -31,66 +32,113 @@
     </nav>
 
     <main class="main-content">
+        
         <div class="header-box">
             <div class="page-title">
-                <h1>Dashboard Utama</h1>
-                <p style="color: #666; font-size:13px; margin-top:5px;">Selamat Datang di Sistem Informasi Akademik</p>
+                <h1>Selamat Datang, <span id="welcomeName" style="color:#1a4d2e; text-transform: capitalize;">Mahasiswa</span>!</h1>
+                <p style="color: #666; font-size:13px; margin-top:5px;">Sistem Informasi Akademik Mahasiswa</p>
             </div>
-            <div class="user-info" style="text-align:right;">
-                <h4 id="welcomeName" style="color:#1b4332;">Mahasiswa</h4>
-                <span style="font-size:12px; color:#888;">NIM: 24EP10007</span>
-            </div>
-        </div>
-
-        <div class="progress-card">
-            <div style="display:flex; justify-content:space-between; font-weight:bold; color:#1b4332;">
-                <span>Progress Studi (Semester 3)</span>
-                <span>IPK: 3.85</span>
-            </div>
-            <div class="progress-bg">
-                <div class="progress-fill" style="width: 35%;">35% Selesai</div>
+            <div class="date-box" style="background: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <i class="far fa-calendar-alt"></i> <span id="tanggalHariIni"></span>
             </div>
         </div>
 
         <div class="cards-grid">
             <div class="card-stat">
-                <div class="icon-box green-icon"><i class="fas fa-book-open"></i></div>
+                <div class="icon-box green-icon"><i class="fas fa-chart-line"></i></div>
                 <div class="stat-info">
-                    <h3>SKS Diambil</h3>
-                    <p>24 SKS</p>
+                    <h3>IPK Saat Ini</h3>
+                    <p>3.85</p>
                 </div>
             </div>
             <div class="card-stat">
-                <div class="icon-box blue-icon"><i class="fas fa-money-check-alt"></i></div>
+                <div class="icon-box blue-icon"><i class="fas fa-user-graduate"></i></div>
                 <div class="stat-info">
-                    <h3>Status UKT</h3>
-                    <p style="color:green; font-weight:bold;">LUNAS</p>
+                    <h3>Semester</h3>
+                    <p>3 (Ganjil)</p>
                 </div>
             </div>
             <div class="card-stat">
-                <div class="icon-box orange-icon"><i class="fas fa-star"></i></div>
+                <div class="icon-box orange-icon"><i class="fas fa-coins"></i></div>
                 <div class="stat-info">
-                    <h3>IP Semester Lalu</h3>
-                    <p>3.80</p>
+                    <h3>Status SPP</h3>
+                    <p style="font-size:14px; color:green;">Lunas</p>
                 </div>
             </div>
         </div>
 
-        <div class="content-card">
-            <h3 style="margin-bottom:15px; color:#1b4332; font-weight:700;">Pengumuman Terbaru</h3>
-            <div style="padding:15px; background:#e8f5e9; border-left:4px solid #1b4332; border-radius:5px;">
-                <h4 style="margin-bottom:5px;"><i class="fas fa-bullhorn"></i> Jadwal UAS Semester Ganjil</h4>
-                <p style="font-size:13px; color:#555;">Pelaksanaan Ujian Akhir Semester (UAS) akan dilaksanakan mulai tanggal 15 Januari 2026. Harap segera melunasi administrasi dan mencetak kartu ujian.</p>
+        <div class="content-card" style="margin-top: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="color:#1b4332; font-weight:700;">Daftar Hadir Pengguna (Live)</h3>
+                <span style="font-size: 12px; background: #e8f5e9; color: green; padding: 5px 10px; border-radius: 15px;">
+                    <i class="fas fa-dot-circle" style="font-size: 10px;"></i> Realtime System
+                </span>
             </div>
+
+            <table style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #f8f9fa; color: #666; font-size: 13px;">
+                        <th style="padding: 15px; text-align: left;">Nama Pengguna</th>
+                        <th style="padding: 15px; text-align: left;">Status</th>
+                        <th style="padding: 15px; text-align: left;">Waktu Login</th>
+                        <th style="padding: 15px; text-align: left;">Perangkat</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceList">
+                    </tbody>
+            </table>
         </div>
+
     </main>
 
     <script>
-        // Script untuk mengambil nama dari Login
-        const nama = localStorage.getItem("namaUser");
-        if(nama) {
-            document.getElementById("welcomeName").innerText = nama;
-        }
+        // 1. Menampilkan Tanggal Hari Ini
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById("tanggalHariIni").innerText = new Date().toLocaleDateString('id-ID', options);
+
+        // 2. Mengambil Nama User yang Login
+        const currentUser = localStorage.getItem("namaUser") || "Mahasiswa";
+        document.getElementById("welcomeName").innerText = currentUser;
+
+        // 3. Logika Daftar Hadir Palsu (Simulasi)
+        const temanKelas = [
+            "faqih", "toik", "widad", "dinda", "alia", 
+            "nwalia", "syafa", "fiki"
+        ];
+
+        const attendanceTable = document.getElementById("attendanceList");
+
+        // A. Masukkan User yang SEDANG LOGIN paling atas
+        let htmlContent = `
+            <tr style="border-bottom: 1px solid #eee; background-color: #f0fff4;">
+                <td style="padding: 12px; font-weight: bold; text-transform: capitalize;">
+                    <i class="fas fa-user-circle" style="color: #1a4d2e; margin-right: 8px;"></i> ${currentUser} (Saya)
+                </td>
+                <td style="padding: 12px;"><span style="color: green; font-weight: bold; font-size: 12px;">● Sedang Online</span></td>
+                <td style="padding: 12px; color: #555;">Baru Saja</td>
+                <td style="padding: 12px; color: #555;"><i class="fas fa-desktop"></i> PC / Laptop</td>
+            </tr>
+        `;
+
+        // B. Masukkan Teman-teman lain (Simulasi acak)
+        temanKelas.forEach(nama => {
+            // Jangan tampilkan nama teman jika sama dengan user yang login (supaya tidak dobel)
+            if(nama !== currentUser) {
+                const jamAcak = Math.floor(Math.random() * 5) + 1; // 1-5 jam lalu
+                htmlContent += `
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 12px; text-transform: capitalize; color: #555;">
+                            <i class="far fa-user-circle" style="color: #aaa; margin-right: 8px;"></i> ${nama}
+                        </td>
+                        <td style="padding: 12px;"><span style="color: #888; font-size: 12px;">○ Offline</span></td>
+                        <td style="padding: 12px; color: #888;">${jamAcak} jam yang lalu</td>
+                        <td style="padding: 12px; color: #888;"><i class="fas fa-mobile-alt"></i> Smartphone</td>
+                    </tr>
+                `;
+            }
+        });
+
+        attendanceTable.innerHTML = htmlContent;
     </script>
 </body>
 </html>
