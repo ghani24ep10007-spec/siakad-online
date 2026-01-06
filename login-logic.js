@@ -12,36 +12,38 @@ const users = [
     { username: "fiki", password: "123" }
 ];
 
-// --- LOGIKA LOGIN (JANGAN DIUBAH) ---
+// --- LOGIKA LOGIN ---
 document.addEventListener("DOMContentLoaded", function() {
     
-    // Mencari tombol dan input di HTML
-    const loginButton = document.querySelector("button"); 
+    // Mencari elemen tombol dan input
+    // Pastikan di HTML kamu menggunakan id="username" dan id="password"
+    const loginForm = document.querySelector("form"); 
     const inputUser = document.getElementById("username"); 
     const inputPass = document.getElementById("password"); 
 
-    // Cek apakah elemen ditemukan agar tidak error
-    if(loginButton && inputUser && inputPass) {
+    if(loginForm && inputUser && inputPass) {
         
-        loginButton.addEventListener("click", function(event) {
-            event.preventDefault(); // Mencegah form refresh halaman
+        loginForm.addEventListener("submit", function(event) {
+            // INI YANG MENCEGAH WEB MENTAL (REFRESH)
+            event.preventDefault(); 
 
-            const usernameValue = inputUser.value;
+            const usernameValue = inputUser.value.toLowerCase(); // Ubah ke huruf kecil biar tidak error kalau caps lock nyala
             const passwordValue = inputPass.value;
 
-            // Cek kecocokan data
+            // Cek apakah data input cocok dengan salah satu user di database
             const validUser = users.find(user => user.username === usernameValue && user.password === passwordValue);
 
             if (validUser) {
-                // JIKA LOGIN BERHASIL
-                localStorage.setItem("namaUser", validUser.username); // Simpan nama user
+                // JIKA BERHASIL
+                localStorage.setItem("namaUser", validUser.username); // Simpan nama siapa yang login
+                alert("Selamat Datang, " + validUser.username + "!");
                 window.location.href = "dashboard.html"; // Pindah ke dashboard
             } else {
-                // JIKA LOGIN GAGAL
-                alert("Username atau Password salah! (Coba password: 123)");
+                // JIKA GAGAL
+                alert("Username atau Password salah! (Coba cek daftar nama teman)");
             }
         });
     } else {
-        console.error("Error: Element ID 'username' atau 'password' tidak ditemukan di index.html");
+        console.error("Error: Pastikan ID 'username' dan 'password' sudah benar di file index.html");
     }
 });
