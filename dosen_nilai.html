@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Nilai - Dosen SIAKAD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS Khusus Halaman Dosen --- */
+        
+        /* Input Nilai di dalam Tabel */
+        .input-nilai {
+            width: 70px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .input-nilai:focus {
+            border-color: #1a4d2e;
+            outline: none;
+            background-color: #f0fff4;
+        }
+
+        /* Warna Status Grade */
+        .grade-box {
+            display: inline-block;
+            width: 35px; height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            color: white;
+        }
+        .grade-A { background-color: #2e7d32; } /* Hijau */
+        .grade-B { background-color: #1565c0; } /* Biru */
+        .grade-C { background-color: #f9a825; } /* Kuning */
+        .grade-D { background-color: #c62828; } /* Merah */
+        .grade-E { background-color: #424242; } /* Hitam */
+
+        /* Header Filter Kelas */
+        .filter-section {
+            display: flex; gap: 15px; margin-bottom: 20px;
+        }
+        .filter-select {
+            padding: 10px; border: 1px solid #ddd; border-radius: 8px; min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar" style="background-color: #2c3e50;"> <div class="logo">
+            <h2>SIAKAD</h2>
+            <span>DOSEN UNUGHA</span>
+        </div>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fas fa-calendar-alt"></i> Jadwal Mengajar</a></li>
+            
+            <li class="separator">Menu Akademik</li>
+            <li><a href="#" class="active"><i class="fas fa-edit"></i> Input Nilai</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Perwalian</a></li> <li><a href="#"><i class="fas fa-clipboard-list"></i> Presensi Mhs</a></li>
+            
+            <li class="menu-logout">
+                <a href="index.html" onclick="localStorage.clear();">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        
+        <div class="header-box">
+            <div class="page-title">
+                <h1>Input Nilai Mahasiswa</h1>
+                <p>Semester Ganjil 2025/2026</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+                <div style="text-align:right;">
+                    <h5 style="margin:0; font-size:14px;">Bpk. Abdul Haq, M.Kom</h5>
+                    <span style="font-size:11px; color:#666;">NIDN. 0612345678</span>
+                </div>
+                <div style="width:40px; height:40px; background:#ddd; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card mb-3" style="margin-bottom: 25px;">
+            <div class="filter-section">
+                <div>
+                    <label style="font-size:12px; font-weight:bold; display:block; margin-bottom:5px;">Mata Kuliah</label>
+                    <select class="filter-select">
+                        <option>SI-301 Pemrograman Web Dasar</option>
+                        <option>SI-303 Basis Data I</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size:12px; font-weight:bold; display:block; margin-bottom:5px;">Kelas</label>
+                    <select class="filter-select" style="min-width: 100px;">
+                        <option>Kelas A</option>
+                        <option>Kelas B</option>
+                    </select>
+                </div>
+                <div style="display:flex; align-items:flex-end;">
+                    <button style="padding:10px 20px; background:#2c3e50; color:white; border:none; border-radius:8px; cursor:pointer;">
+                        <i class="fas fa-filter"></i> Tampilkan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3 style="color:#2c3e50; font-weight:700;">Daftar Mahasiswa</h3>
+                <button onclick="simpanNilai()" style="padding:10px 20px; background:#27ae60; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
+                    <i class="fas fa-save"></i> Simpan Permanen
+                </button>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table id="tabelNilai">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="15%">NIM</th>
+                            <th width="25%">Nama Mahasiswa</th>
+                            <th width="10%" style="text-align:center;">Tugas (30%)</th>
+                            <th width="10%" style="text-align:center;">UTS (30%)</th>
+                            <th width="10%" style="text-align:center;">UAS (40%)</th>
+                            <th width="10%" style="text-align:center;">Nilai Akhir</th>
+                            <th width="10%" style="text-align:center;">Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>24EP10007</td>
+                            <td><b>Rizqi Ghani Adinata</b></td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="tugas_1" value="0" oninput="hitung(1)" max="100">
+                            </td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="uts_1" value="0" oninput="hitung(1)" max="100">
+                            </td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="uas_1" value="0" oninput="hitung(1)" max="100">
+                            </td>
+                            <td align="center" style="font-weight:bold; font-size:16px;" id="akhir_1">0</td>
+                            <td align="center"><div class="grade-box grade-E" id="grade_1">E</div></td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>24EP10008</td>
+                            <td><b>Ahmad Faqih</b></td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="tugas_2" value="80" oninput="hitung(2)" max="100">
+                            </td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="uts_2" value="85" oninput="hitung(2)" max="100">
+                            </td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="uas_2" value="90" oninput="hitung(2)" max="100">
+                            </td>
+                            <td align="center" style="font-weight:bold; font-size:16px;" id="akhir_2">85.5</td>
+                            <td align="center"><div class="grade-box grade-A" id="grade_2">A</div></td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>24EP10009</td>
+                            <td><b>Siti Alia</b></td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="tugas_3" value="70" oninput="hitung(3)" max="100">
+                            </td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="uts_3" value="75" oninput="hitung(3)" max="100">
+                            </td>
+                            <td align="center">
+                                <input type="number" class="input-nilai" id="uas_3" value="60" oninput="hitung(3)" max="100">
+                            </td>
+                            <td align="center" style="font-weight:bold; font-size:16px;" id="akhir_3">67.5</td>
+                            <td align="center"><div class="grade-box grade-C" id="grade_3">C</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p style="margin-top:20px; font-size:12px; color:#666;">
+                *Nilai Akhir dihitung otomatis: (Tugas x 30%) + (UTS x 30%) + (UAS x 40%).
+            </p>
+        </div>
+
+    </main>
+
+    <script>
+        function hitung(id) {
+            // 1. Ambil nilai dari input
+            let tugas = parseFloat(document.getElementById('tugas_' + id).value) || 0;
+            let uts = parseFloat(document.getElementById('uts_' + id).value) || 0;
+            let uas = parseFloat(document.getElementById('uas_' + id).value) || 0;
+
+            // 2. Batasi maksimal 100
+            if(tugas > 100) tugas = 100;
+            if(uts > 100) uts = 100;
+            if(uas > 100) uas = 100;
+
+            // 3. Rumus Perhitungan Bobot
+            let nilaiAkhir = (tugas * 0.30) + (uts * 0.30) + (uas * 0.40);
+            
+            // 4. Tampilkan Nilai Akhir (maks 1 desimal)
+            document.getElementById('akhir_' + id).innerText = nilaiAkhir.toFixed(1);
+
+            // 5. Tentukan Grade Huruf & Warna
+            let gradeHuruf = 'E';
+            let gradeClass = 'grade-E';
+
+            if (nilaiAkhir >= 85) {
+                gradeHuruf = 'A'; gradeClass = 'grade-A';
+            } else if (nilaiAkhir >= 75) {
+                gradeHuruf = 'B'; gradeClass = 'grade-B';
+            } else if (nilaiAkhir >= 60) {
+                gradeHuruf = 'C'; gradeClass = 'grade-C';
+            } else if (nilaiAkhir >= 50) {
+                gradeHuruf = 'D'; gradeClass = 'grade-D';
+            }
+
+            // 6. Update Tampilan Grade
+            let gradeElement = document.getElementById('grade_' + id);
+            gradeElement.innerText = gradeHuruf;
+            gradeElement.className = 'grade-box ' + gradeClass; // Ganti warna
+        }
+
+        // Jalankan hitung otomatis saat halaman dimuat untuk data yang sudah ada
+        window.onload = function() {
+            hitung(1); hitung(2); hitung(3);
+        }
+
+        function simpanNilai() {
+            alert("Data nilai berhasil disimpan ke Database!");
+            // Di sini nanti logika kirim ke server (Backend)
+        }
+    </script>
+
+</body>
+</html>
