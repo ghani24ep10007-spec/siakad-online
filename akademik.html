@@ -4,43 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KRS Online - SIAKAD</title>
+    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        /* --- CSS Tambahan Khusus Halaman KRS --- */
+        /* --- CSS KHUSUS HALAMAN KRS --- */
         
-        /* Styling Tabel agar lebih rapi */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th { background-color: #f8f9fa; color: #444; font-weight: 600; padding: 12px 15px; text-align: left; border-bottom: 2px solid #ddd; font-size: 13px; }
-        td { padding: 12px 15px; border-bottom: 1px solid #eee; color: #555; font-size: 13px; }
+        /* Tabel Rapi */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; }
+        th { background-color: #f1f3f5; color: #333; font-weight: 700; padding: 12px 15px; text-align: left; border-bottom: 2px solid #ddd; font-size: 13px; }
+        td { padding: 12px 15px; border-bottom: 1px solid #eee; color: #444; font-size: 13px; }
         tr:hover { background-color: #f9f9f9; }
 
         /* Badge Status */
-        .badge { padding: 5px 10px; border-radius: 15px; font-size: 11px; font-weight: 600; }
-        .badge-success { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-        .badge-warning { background-color: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .badge { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; display: inline-block;}
+        .badge-success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+        .badge-warning { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
 
-        /* --- PENTING: CSS KHUSUS UNTUK PRINT / CETAK --- */
+        /* --- SETTINGAN PRINT / CETAK (PENTING) --- */
         @media print {
-            .sidebar, .menu-logout, .btn-print, .no-print {
-                display: none !important; /* Sembunyikan Sidebar & Tombol saat Print */
+            /* Sembunyikan elemen yang tidak perlu saat print */
+            .sidebar, .menu-logout, .btn-print, .no-print, .header-actions {
+                display: none !important;
             }
-            .main-content {
-                margin-left: 0 !important; /* Geser konten ke kiri mentok */
-                width: 100% !important;
-                padding: 0 !important;
-            }
-            body { background-color: white; }
-            .card-stat { border: 1px solid #ddd; box-shadow: none; }
             
-            /* Tanda Tangan Dosen (Muncul hanya saat print) */
-            .signature-section { display: flex !important; margin-top: 50px; }
+            /* Atur layout kertas */
+            body { background-color: white; color: black; font-family: 'Times New Roman', serif; }
+            .main-content { margin: 0 !important; width: 100% !important; padding: 0 !important; }
+            .content-card { box-shadow: none !important; border: none !important; padding: 0 !important; }
+            .card-stat { display: none; } /* Sembunyikan statistik card saat print */
+
+            /* Header Kop Surat (Hanya muncul saat print) */
+            .print-header { display: block !important; text-align: center; border-bottom: 3px double black; margin-bottom: 20px; padding-bottom: 10px; }
+            
+            /* Tanda Tangan */
+            .signature-section { display: flex !important; justify-content: space-between; margin-top: 50px; page-break-inside: avoid; }
         }
-        
-        /* Sembunyikan Tanda Tangan di layar biasa */
-        .signature-section { display: none; justify-content: space-between; padding: 0 50px; }
+
+        /* Default: Sembunyikan Kop Surat & Tanda Tangan di Layar Biasa */
+        .print-header { display: none; }
+        .signature-section { display: none; }
     </style>
 </head>
 <body>
@@ -70,13 +75,19 @@
 
     <main class="main-content">
         
+        <div class="print-header">
+            <h2 style="margin:0;">UNIVERSITAS NAHDLATUL ULAMA AL GHAZALI</h2>
+            <h3 style="margin:0; font-weight:normal;">FAKULTAS TEKNOLOGI INDUSTRI</h3>
+            <p style="margin:0; font-size:12px;">Jl. Kemerdekaan Barat No.12, Kesugihan, Cilacap, Jawa Tengah</p>
+        </div>
+
         <div class="header-box">
             <div class="page-title">
                 <h1>Kartu Rencana Studi (KRS)</h1>
-                <p>Semester Ganjil 2025/2026</p>
+                <p>Semester Ganjil Tahun Akademik 2025/2026</p>
             </div>
-            <div>
-                <button class="btn-print" onclick="window.print()" style="padding:10px 20px; background:#1b4332; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold; box-shadow:0 4px 10px rgba(27,67,50,0.3); transition:0.3s;">
+            <div class="header-actions">
+                <button class="btn-print" onclick="window.print()" style="padding:10px 20px; background:#1a4d2e; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold; box-shadow:0 4px 10px rgba(26,77,46,0.3);">
                     <i class="fas fa-print"></i> Cetak KRS
                 </button>
             </div>
@@ -86,30 +97,30 @@
             <div class="card-stat">
                 <div class="icon-box orange-icon"><i class="fas fa-book"></i></div>
                 <div class="stat-info">
-                    <h3>Total SKS Diambil</h3>
+                    <h3>Total SKS</h3>
                     <p>21 SKS</p>
                 </div>
             </div>
             <div class="card-stat">
                 <div class="icon-box green-icon"><i class="fas fa-check-circle"></i></div>
                 <div class="stat-info">
-                    <h3>Jatah Maksimal</h3>
-                    <p>24 SKS</p>
+                    <h3>Status KRS</h3>
+                    <p style="font-size:16px; color:green;">Disetujui</p>
                 </div>
             </div>
             <div class="card-stat">
                 <div class="icon-box blue-icon"><i class="fas fa-user-tie"></i></div>
                 <div class="stat-info">
                     <h3>Dosen Wali</h3>
-                    <p style="font-size:16px;">Bpk. Abdul Haq</p>
+                    <p style="font-size:14px;">Lasimin, M.Kom.</p>
                 </div>
             </div>
         </div>
 
         <div class="content-card" style="margin-top: 25px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h3 style="color:#1b4332; font-weight:700; font-size:18px;">Daftar Mata Kuliah</h3>
-                <span style="font-size:12px; color:#666;">Status KRS: <b style="color:green;">DISETUJUI</b></span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;" class="no-print">
+                <h3 style="color:#1b4332; font-weight:700; font-size:16px;">Mata Kuliah Diambil</h3>
+                <span style="font-size:12px; color:#666;">Batas SKS: 24</span>
             </div>
 
             <div style="overflow-x: auto;">
@@ -118,107 +129,95 @@
                         <tr>
                             <th width="5%">No</th>
                             <th width="10%">Kode</th>
-                            <th width="30%">Mata Kuliah</th>
-                            <th width="5%">SKS</th>
-                            <th width="5%">Kelas</th>
-                            <th width="20%">Jadwal</th>
-                            <th width="15%">Dosen Pengampu</th>
-                            <th width="10%" class="no-print">Status</th>
+                            <th width="35%">Mata Kuliah</th>
+                            <th width="5%" style="text-align:center;">SKS</th>
+                            <th width="5%" style="text-align:center;">Kls</th>
+                            <th width="25%">Jadwal & Ruang</th>
+                            <th width="15%" class="no-print">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td><td>SI-301</td>
                             <td><b>Pemrograman Web Dasar</b></td>
-                            <td align="center">3</td>
-                            <td align="center">A</td>
+                            <td align="center">3</td><td align="center">A</td>
                             <td>Senin, 08:00 (Lab 2)</td>
-                            <td>Bpk. Abdul Haq</td>
                             <td class="no-print"><span class="badge badge-success">Disetujui</span></td>
                         </tr>
                         <tr>
                             <td>2</td><td>SI-302</td>
                             <td><b>Struktur Data</b></td>
-                            <td align="center">3</td>
-                            <td align="center">A</td>
+                            <td align="center">3</td><td align="center">A</td>
                             <td>Senin, 13:00 (R.304)</td>
-                            <td>Ibu Sari, M.Kom</td>
                             <td class="no-print"><span class="badge badge-success">Disetujui</span></td>
                         </tr>
                         <tr>
                             <td>3</td><td>SI-303</td>
                             <td><b>Basis Data I</b></td>
-                            <td align="center">3</td>
-                            <td align="center">B</td>
+                            <td align="center">3</td><td align="center">B</td>
                             <td>Selasa, 10:00 (Lab 1)</td>
-                            <td>Bpk. Cahyo, M.Kom</td>
                             <td class="no-print"><span class="badge badge-success">Disetujui</span></td>
                         </tr>
                         <tr>
                             <td>4</td><td>SI-304</td>
                             <td><b>Jaringan Komputer</b></td>
-                            <td align="center">3</td>
-                            <td align="center">A</td>
+                            <td align="center">3</td><td align="center">A</td>
                             <td>Rabu, 08:00 (Lab Jarkom)</td>
-                            <td>Bpk. Budi, M.Kom</td>
                             <td class="no-print"><span class="badge badge-success">Disetujui</span></td>
                         </tr>
                         <tr>
                             <td>5</td><td>SI-305</td>
                             <td><b>Sistem Operasi</b></td>
-                            <td align="center">3</td>
-                            <td align="center">A</td>
+                            <td align="center">3</td><td align="center">A</td>
                             <td>Kamis, 10:00 (R.302)</td>
-                            <td>Bpk. Fajar, M.T</td>
                             <td class="no-print"><span class="badge badge-success">Disetujui</span></td>
                         </tr>
                         <tr>
                             <td>6</td><td>SI-306</td>
                             <td><b>Statistika Probabilitas</b></td>
-                            <td align="center">3</td>
-                            <td align="center">B</td>
+                            <td align="center">3</td><td align="center">B</td>
                             <td>Jumat, 08:00 (R.305)</td>
-                            <td>Ibu Prof. Maya, Ph.D</td>
                             <td class="no-print"><span class="badge badge-success">Disetujui</span></td>
                         </tr>
                         <tr>
                             <td>7</td><td>SI-307</td>
                             <td><b>Interaksi Manusia & Komputer</b></td>
-                            <td align="center">3</td>
-                            <td align="center">A</td>
+                            <td align="center">3</td><td align="center">A</td>
                             <td>Jumat, 13:00 (R.301)</td>
-                            <td>Ibu Ratna, M.Kom</td>
                             <td class="no-print"><span class="badge badge-warning">Menunggu</span></td>
                         </tr>
                     </tbody>
                     <tfoot>
-                        <tr style="background-color: #f0fff4; font-weight: bold;">
-                            <td colspan="3" align="right" style="padding-right: 20px;">Total SKS</td>
+                        <tr style="background-color: #f8f9fa; font-weight: bold;">
+                            <td colspan="3" align="right" style="padding-right: 20px;">Total SKS Diambil</td>
                             <td align="center">21</td>
-                            <td colspan="4"></td>
+                            <td colspan="3"></td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
 
-        <div class="signature-section">
-            <div style="text-align: center;">
+        <div class="signature-section" style="margin-top: 50px;">
+            <div style="text-align: center; width: 40%;">
                 <p>Mengetahui,<br>Dosen Wali</p>
-                <br><br><br>
-                <p><b><u>Bpk. Abdul Haq, M.Kom</u></b><br>NIDN. 0612345678</p>
+                <br><br><br><br>
+                <p style="margin-bottom: 0;"><b><u>Lasimin, M.Kom.</u></b></p>
+                <p style="margin-top: 2px;">NIP. 0605048602</p>
             </div>
-            <div style="text-align: center;">
+            
+            <div style="text-align: center; width: 40%;">
                 <p>Cilacap, <span id="tanggalPrint"></span><br>Mahasiswa</p>
-                <br><br><br>
-                <p><b><u>Rizqi Ghani Adinata</u></b><br>NIM. 24EP10007</p>
+                <br><br><br><br>
+                <p style="margin-bottom: 0;"><b><u>Rizqi Ghani Adinata</u></b></p>
+                <p style="margin-top: 2px;">NIM. 24EP10007</p>
             </div>
         </div>
 
     </main>
 
     <script>
-        // Script tanggal otomatis untuk tanda tangan
+        // Tanggal Otomatis
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById("tanggalPrint").innerText = new Date().toLocaleDateString('id-ID', options);
     </script>
