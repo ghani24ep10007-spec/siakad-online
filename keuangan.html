@@ -2,99 +2,244 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Keuangan - SIAKAD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keuangan & UKT - SIAKAD</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS Tambahan Khusus Halaman Keuangan --- */
+        
+        /* Kotak Virtual Account */
+        .va-card {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+        }
+
+        .va-card::after {
+            content: '';
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 150px; height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .va-number {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn-copy {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+        .btn-copy:hover { background: white; color: #1e3c72; }
+
+        /* Badge Status Pembayaran */
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .status-lunas { background-color: #d1e7dd; color: #0f5132; }
+        .status-pending { background-color: #fff3cd; color: #664d03; }
+        .status-gagal { background-color: #f8d7da; color: #842029; }
+
+        /* Tabel Styling */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { background: #f8f9fa; padding: 12px; text-align: left; color: #555; font-size: 13px; border-bottom: 2px solid #ddd; }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; color: #444; }
+        
+        .btn-action {
+            background: #f0f0f0; border: none; padding: 6px 10px; border-radius: 5px; cursor: pointer; color: #555; transition: 0.2s;
+        }
+        .btn-action:hover { background: #1a4d2e; color: white; }
+
+        /* Layout Grid Khusus */
+        .finance-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Kiri lebar, Kanan sempit */
+            gap: 25px;
+        }
+        @media (max-width: 900px) { .finance-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
+
     <nav class="sidebar">
         <div class="logo">
             <h2>SIAKAD</h2>
             <span>UNUGHA CILACAP</span>
         </div>
         <ul>
-            <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
             <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
             <li><a href="keuangan.html" class="active"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
+            
             <li class="separator">Menu Akademik</li>
             <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
-            <li><a href="akademik.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
+            <li><a href="transkrip.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
             <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
+            
+            <li class="menu-logout">
+                <a href="index.html" onclick="localStorage.clear();">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
         </ul>
     </nav>
 
     <main class="main-content">
+        
         <div class="header-box">
             <div class="page-title">
-                <h1>Info Keuangan & UKT</h1>
-                <p style="color: #666; font-size:13px; margin-top:5px;">Cek status pembayaran semester Anda</p>
+                <h1>Keuangan & UKT</h1>
+                <p>Cek tagihan dan riwayat pembayaran semester</p>
             </div>
-            <div class="breadcrumb">Semester 5 (Ganjil 2025/2026)</div>
-        </div>
-
-        <div class="cards-grid">
-            <div class="card-stat" style="border-bottom: 4px solid #1b4332;">
-                <div class="icon-box green-icon"><i class="fas fa-check-double"></i></div>
-                <div class="stat-info">
-                    <h3>Status UKT Saat Ini</h3>
-                    <p style="color:#1b4332;">LUNAS</p>
-                </div>
-            </div>
-            <div class="card-stat">
-                <div class="icon-box blue-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                <div class="stat-info">
-                    <h3>Total Tagihan</h3>
-                    <p>Rp 0</p>
-                </div>
+            <div style="background: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <i class="fas fa-university"></i> Semester 5 (Ganjil 2025)
             </div>
         </div>
 
-        <div class="content-card">
-            <h3 style="margin-bottom:20px; color:#1b4332; font-weight:700;"><i class="fas fa-history"></i> Riwayat Transaksi</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Keterangan</th>
-                        <th>Semester</th>
-                        <th>Nominal</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><b>UKT Tetap - S1 Sistem Informasi</b></td>
-                        <td>Sem. 5</td>
-                        <td>Rp 3.500.000</td>
-                        <td>20 Agt 2025</td>
-                        <td><span class="badge-status offline">BERHASIL</span></td>
-                        <td><button style="padding:5px 10px; border:none; background:#eee; cursor:pointer; border-radius:4px;"><i class="fas fa-print"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><b>UKT Tetap - S1 Sistem Informasi</b></td>
-                        <td>Sem. 4</td>
-                        <td>Rp 3.500.000</td>
-                        <td>15 Jan 2025</td>
-                        <td><span class="badge-status offline">BERHASIL</span></td>
-                        <td><button style="padding:5px 10px; border:none; background:#eee; cursor:pointer; border-radius:4px;"><i class="fas fa-print"></i></button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><b>UKT Tetap - S1 Sistem Informasi</b></td>
-                        <td>Sem. 3</td>
-                        <td>Rp 3.500.000</td>
-                        <td>10 Agt 2024</td>
-                        <td><span class="badge-status offline">BERHASIL</span></td>
-                        <td><button style="padding:5px 10px; border:none; background:#eee; cursor:pointer; border-radius:4px;"><i class="fas fa-print"></i></button></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="finance-grid">
+            
+            <div class="left-section">
+                
+                <div class="va-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:12px; opacity:0.8;">Bank BRI (BRIVA)</span>
+                        <i class="fas fa-credit-card" style="font-size:20px; opacity:0.5;"></i>
+                    </div>
+                    <div class="va-number" id="vaCode">8888 0123 4567 8900</div>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span style="font-size:12px;">a.n Rizqi Ghani Adinata</span>
+                        <button class="btn-copy" onclick="copyVA()">
+                            <i class="far fa-copy"></i> Salin Nomor
+                        </button>
+                    </div>
+                    <p style="font-size:11px; margin-top:15px; opacity:0.7;">*Pembayaran diverifikasi otomatis 1x24 jam.</p>
+                </div>
+
+                <div class="content-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                        <h3 style="color:#1b4332; font-weight:700;">Riwayat Transaksi</h3>
+                        <button class="btn-action" onclick="window.print()"><i class="fas fa-print"></i> Cetak Laporan</button>
+                    </div>
+                    
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Keterangan Tagihan</th>
+                                    <th>Semester</th>
+                                    <th>Nominal</th>
+                                    <th>Tanggal Bayar</th>
+                                    <th>Status</th>
+                                    <th style="text-align:center;">Bukti</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><b>UKT - Sistem Informasi</b></td>
+                                    <td>Sem. 3</td>
+                                    <td>Rp 3.500.000</td>
+                                    <td>20 Agt 2025</td>
+                                    <td><span class="status-badge status-lunas">LUNAS</span></td>
+                                    <td style="text-align:center;"><button class="btn-action"><i class="fas fa-download"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><b>Biaya Praktikum Lab</b></td>
+                                    <td>Sem. 3</td>
+                                    <td>Rp 250.000</td>
+                                    <td>22 Agt 2025</td>
+                                    <td><span class="status-badge status-lunas">LUNAS</span></td>
+                                    <td style="text-align:center;"><button class="btn-action"><i class="fas fa-download"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><b>UKT - Sistem Informasi</b></td>
+                                    <td>Sem. 2</td>
+                                    <td>Rp 3.500.000</td>
+                                    <td>15 Jan 2025</td>
+                                    <td><span class="status-badge status-lunas">LUNAS</span></td>
+                                    <td style="text-align:center;"><button class="btn-action"><i class="fas fa-download"></i></button></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="content-card mb-3" style="text-align:center; padding:30px 20px; margin-bottom: 25px;">
+                    <div style="width:70px; height:70px; background:#e8f5e9; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px;">
+                        <i class="fas fa-check" style="font-size:30px; color:#2e7d32;"></i>
+                    </div>
+                    <h3 style="color:#2e7d32; margin-bottom:5px;">LUNAS</h3>
+                    <p style="color:#666; font-size:13px;">Tidak ada tagihan aktif untuk Semester 5.</p>
+                </div>
+
+                <div class="content-card">
+                    <h4 style="font-size:15px; border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:15px;">Rincian Biaya</h4>
+                    
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:13px;">
+                        <span style="color:#666;">UKT Tetap</span>
+                        <span style="font-weight:bold;">Rp 3.500.000</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:13px;">
+                        <span style="color:#666;">Biaya SKS (22x0)</span>
+                        <span style="font-weight:bold;">Rp 0</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:13px;">
+                        <span style="color:#666;">Praktikum</span>
+                        <span style="font-weight:bold;">Rp 250.000</span>
+                    </div>
+                    <hr style="border:0; border-top:1px dashed #ddd; margin:10px 0;">
+                    <div style="display:flex; justify-content:space-between; font-size:14px; color:#1b4332;">
+                        <strong>Total Semester 5</strong>
+                        <strong>Rp 3.750.000</strong>
+                    </div>
+                </div>
+
+                <div style="margin-top:25px; background:#fff3cd; padding:15px; border-radius:10px; font-size:12px; color:#856404; border:1px solid #ffeeba;">
+                    <i class="fas fa-info-circle"></i> <b>Kendala Pembayaran?</b><br>
+                    Hubungi Bagian Keuangan (BAUK)<br>
+                    <i class="fab fa-whatsapp"></i> +62 812-3456-7890
+                </div>
+            </div>
+
         </div>
+
     </main>
+
+    <script>
+        function copyVA() {
+            const vaText = document.getElementById("vaCode").innerText;
+            navigator.clipboard.writeText(vaText).then(() => {
+                alert("Nomor Virtual Account berhasil disalin!");
+            });
+        }
+    </script>
 </body>
 </html>
