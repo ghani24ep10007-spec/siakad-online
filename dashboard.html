@@ -7,6 +7,46 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* CSS Tambahan untuk Fitur Baru */
+        .progress-container {
+            width: 100%; background-color: #eee; border-radius: 10px; height: 10px; margin-top: 5px;
+        }
+        .progress-bar {
+            height: 100%; background-color: #1a4d2e; border-radius: 10px; width: 60%; /* Simulasi 60% */
+            transition: width 1s ease-in-out;
+        }
+        
+        .task-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px; border-bottom: 1px solid #eee;
+        }
+        .task-item:last-child { border-bottom: none; }
+        .task-check { transform: scale(1.2); accent-color: #1a4d2e; cursor: pointer; }
+        .task-label { font-size: 13px; color: #444; margin-left: 10px; flex-grow: 1; }
+        .task-date { font-size: 11px; color: #dc3545; background: #ffe6e6; padding: 2px 6px; border-radius: 4px; }
+        .task-done { text-decoration: line-through; color: #aaa; }
+
+        .btn-shortcut {
+            display: inline-block; text-align: center; margin-right: 10px; margin-bottom: 10px;
+            width: 80px; font-size: 11px; color: #555; text-decoration: none;
+        }
+        .btn-shortcut div {
+            width: 45px; height: 45px; background: white; border: 1px solid #ddd;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 5px; font-size: 18px; color: #1a4d2e; transition: 0.3s;
+        }
+        .btn-shortcut:hover div { background: #1a4d2e; color: white; transform: translateY(-3px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+
+        .notif-bell { position: relative; cursor: pointer; margin-right: 15px; }
+        .notif-badge {
+            position: absolute; top: -5px; right: -5px; background: red; color: white;
+            font-size: 10px; width: 16px; height: 16px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 2px solid white;
+        }
+    </style>
 </head>
 <body>
     
@@ -19,12 +59,10 @@
             <li><a href="dashboard.html" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
             <li><a href="profil.html"><i class="fas fa-user-circle"></i> Profil Data</a></li>
             <li><a href="keuangan.html"><i class="fas fa-wallet"></i> Keuangan & UKT</a></li>
-            
             <li class="separator">Menu Akademik</li>
             <li><a href="akademik.html"><i class="fas fa-book-reader"></i> KRS / KHS</a></li>
             <li><a href="transkrip.html"><i class="fas fa-chart-bar"></i> Transkrip Nilai</a></li>
             <li><a href="skripsi.html"><i class="fas fa-graduation-cap"></i> Skripsi / TA</a></li>
-            
             <li class="menu-logout">
                 <a href="index.html" onclick="localStorage.clear();">
                     <i class="fas fa-sign-out-alt"></i> Logout
@@ -37,15 +75,22 @@
         
         <div class="header-box">
             <div class="page-title">
-                <h1>Selamat Datang, <span id="welcomeName" style="color:#1a4d2e; text-transform: capitalize;">Mahasiswa</span>!</h1>
-                <p>Sistem Informasi Akademik Mahasiswa</p>
+                <h1>Halo, <span id="welcomeName" style="color:#1a4d2e; text-transform: capitalize;">Mahasiswa</span>! 👋</h1>
+                <p>Selamat datang di Dashboard Akademik</p>
             </div>
-            <div class="date-box">
-                <i class="far fa-calendar-alt"></i> <span id="tanggalHariIni"></span>
+            
+            <div style="display: flex; align-items: center;">
+                <div class="notif-bell">
+                    <i class="far fa-bell" style="font-size: 20px; color: #555;"></i>
+                    <span class="notif-badge">3</span>
+                </div>
+                <div class="date-box">
+                    <i class="far fa-calendar-alt"></i> <span id="tanggalHariIni"></span>
+                </div>
             </div>
         </div>
 
-        <div class="cards-grid">
+        <div class="cards-grid" style="margin-bottom: 25px;">
             <div class="card-stat">
                 <div class="icon-box green-icon"><i class="fas fa-chart-line"></i></div>
                 <div class="stat-info">
@@ -53,17 +98,22 @@
                     <p>3.85</p>
                 </div>
             </div>
-            <div class="card-stat">
-                <div class="icon-box blue-icon"><i class="fas fa-user-graduate"></i></div>
-                <div class="stat-info">
-                    <h3>Semester</h3>
-                    <p>3 (Ganjil)</p>
+            
+            <div class="card-stat" style="display: block;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                    <span style="font-size: 13px; font-weight: bold; color: #555;">Progress Studi</span>
+                    <span style="font-size: 12px; color: #1a4d2e; font-weight: bold;">88 / 144 SKS</span>
                 </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 61%;"></div>
+                </div>
+                <p style="font-size: 11px; color: #888; margin-top: 5px;">Semangat! Perjalanan masih panjang.</p>
             </div>
+
             <div class="card-stat">
-                <div class="icon-box orange-icon"><i class="fas fa-coins"></i></div>
+                <div class="icon-box orange-icon"><i class="fas fa-wallet"></i></div>
                 <div class="stat-info">
-                    <h3>Status SPP</h3>
+                    <h3>Tagihan UKT</h3>
                     <p style="font-size:14px; color:green;">Lunas</p>
                 </div>
             </div>
@@ -71,51 +121,75 @@
 
         <div class="dashboard-split">
             
-            <div class="content-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 style="color:#1b4332; font-weight:700;">Daftar Hadir Live</h3>
-                    <span class="live-badge">
-                        <i class="fas fa-dot-circle" style="font-size: 10px;"></i> Realtime
-                    </span>
+            <div style="display: flex; flex-direction: column; gap: 25px;">
+                
+                <div class="content-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="color:#1b4332; font-weight:700;">Statistik IP Semester</h3>
+                        <select style="border:1px solid #ddd; padding:2px 8px; border-radius:5px; font-size:11px;">
+                            <option>Semua Semester</option>
+                        </select>
+                    </div>
+                    <div style="height: 200px;">
+                        <canvas id="ipkChart"></canvas>
+                    </div>
                 </div>
-                <div class="table-responsive">
+
+                <div class="content-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="color:#1b4332; font-weight:700;">Teman Online</h3>
+                        <span class="live-badge"><i class="fas fa-dot-circle" style="font-size: 8px;"></i> Live</span>
+                    </div>
                     <table style="width:100%; border-collapse: collapse;">
-                        <thead>
-                            <tr style="background-color: #f8f9fa; color: #666; font-size: 13px;">
-                                <th style="padding: 15px; text-align: left;">Nama Pengguna</th>
-                                <th style="padding: 15px; text-align: left;">Status</th>
-                                <th style="padding: 15px; text-align: left;">Perangkat</th>
-                            </tr>
-                        </thead>
-                        <tbody id="attendanceList">
-                            </tbody>
+                        <tbody id="attendanceList"></tbody>
                     </table>
                 </div>
+
             </div>
 
             <div class="right-column">
                 
-                <div class="content-card mb-3" style="margin-bottom: 25px;">
-                    <h4 style="font-size: 16px; margin-bottom: 15px; color: #333;"><i class="far fa-clock"></i> Jadwal Hari Ini</h4>
+                <div class="content-card mb-3" style="padding-bottom: 10px;">
+                    <h4 style="font-size: 14px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Akses Cepat</h4>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+                        <a href="#" class="btn-shortcut"><div><i class="fas fa-print"></i></div>Cetak KRS</a>
+                        <a href="#" class="btn-shortcut"><div><i class="fas fa-id-card"></i></div>Kartu Ujian</a>
+                        <a href="#" class="btn-shortcut"><div><i class="fas fa-book"></i></div>Perpus</a>
+                    </div>
+                </div>
+
+                <div class="content-card mb-3">
+                    <h4 style="font-size: 14px; margin-bottom: 15px; color: #333;"><i class="fas fa-tasks"></i> Tugas & Deadline</h4>
                     
+                    <div class="task-item">
+                        <input type="checkbox" class="task-check" onclick="toggleTask(this)">
+                        <span class="task-label">Makalah Etika Al Ghazali</span>
+                        <span class="task-date">Besok</span>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-check" onclick="toggleTask(this)">
+                        <span class="task-label">Project Web HTML</span>
+                        <span class="task-date">3 Hari</span>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-check" checked onclick="toggleTask(this)">
+                        <span class="task-label task-done">Resume Jarkom</span>
+                        <span class="task-date" style="background:#eee; color:#888;">Selesai</span>
+                    </div>
+                </div>
+
+                <div class="content-card mb-3">
+                    <h4 style="font-size: 14px; margin-bottom: 15px;"><i class="far fa-clock"></i> Jadwal Hari Ini</h4>
                     <div class="jadwal-item green-border">
                         <span class="time">08:00 - 10:30</span>
                         <h5>Pemrograman Web</h5>
                         <span class="room">Lab Komputer 2</span>
                     </div>
-
-                    <div class="jadwal-item yellow-border">
-                        <span class="time">13:00 - 14:40</span>
-                        <h5>Basis Data Lanjut</h5>
-                        <span class="room">Ruang Teori 3</span>
-                    </div>
                 </div>
 
                 <div class="content-card announcement-card">
-                    <h4>📢 Pengumuman</h4>
-                    <p>
-                        Batas pembayaran UKT Semester Genap diperpanjang hingga <strong>20 Januari 2026</strong>. Harap segera melunasi.
-                    </p>
+                    <h4>📢 Info Kampus</h4>
+                    <p>Pembayaran UKT diperpanjang hingga <strong>20 Jan 2026</strong>.</p>
                 </div>
 
             </div>
@@ -124,43 +198,67 @@
     </main>
 
     <script>
-        // 1. Tanggal Hari Ini
+        // 1. Setup Tanggal & User
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById("tanggalHariIni").innerText = new Date().toLocaleDateString('id-ID', options);
+        document.getElementById("welcomeName").innerText = localStorage.getItem("namaUser") || "Mahasiswa";
 
-        // 2. Ambil Nama User (Simulasi Login)
-        const currentUser = localStorage.getItem("namaUser") || "Mahasiswa";
-        document.getElementById("welcomeName").innerText = currentUser;
-
-        // 3. Logika Fake Live Attendance
-        const temanKelas = ["faqih", "toik", "widad", "dinda", "alia", "nwalia", "syafa", "fiki"];
-        const attendanceTable = document.getElementById("attendanceList");
-
-        // Render User Sendiri (Paling Atas)
-        let htmlContent = `
-            <tr style="border-bottom: 1px solid #eee; background-color: #f0fff4;">
-                <td style="padding: 12px; font-weight: bold; text-transform: capitalize;">
-                    <i class="fas fa-user-circle" style="color: #1a4d2e; margin-right: 8px;"></i> ${currentUser} (Saya)
-                </td>
-                <td style="padding: 12px;"><span style="color: green; font-weight: bold; font-size: 11px;">● Online</span></td>
-                <td style="padding: 12px; color: #555; font-size: 12px;"><i class="fas fa-desktop"></i> PC/Laptop</td>
-            </tr>
-        `;
-
-        // Render Teman Lain (Acak)
-        temanKelas.forEach(nama => {
-            if(nama !== currentUser) {
-                const jamAcak = Math.floor(Math.random() * 5) + 1;
-                htmlContent += `
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 12px; text-transform: capitalize; color: #555;">
-                            <i class="far fa-user-circle" style="color: #aaa; margin-right: 8px;"></i> ${nama}
-                        </td>
-                        <td style="padding: 12px;"><span style="color: #888; font-size: 11px;">○ Offline</span></td>
-                        <td style="padding: 12px; color: #888; font-size: 12px;"><i class="fas fa-mobile-alt"></i> Mobile</td>
-                    </tr>
-                `;
+        // 2. Setup Grafik IPK (Chart.js)
+        const ctx = document.getElementById('ipkChart').getContext('2d');
+        const ipkChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Sem 1', 'Sem 2', 'Sem 3'],
+                datasets: [{
+                    label: 'Indeks Prestasi',
+                    data: [3.45, 3.60, 3.85],
+                    borderColor: '#1a4d2e',
+                    backgroundColor: 'rgba(26, 77, 46, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4, // Garis melengkung
+                    fill: true,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#1a4d2e',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: false, min: 2.0, max: 4.0, grid: { borderDash: [5, 5] } },
+                    x: { grid: { display: false } }
+                },
+                plugins: { legend: { display: false } } // Sembunyikan legenda
             }
+        });
+
+        // 3. Efek Coret Tugas (Checkbox)
+        function toggleTask(checkbox) {
+            const label = checkbox.nextElementSibling;
+            if (checkbox.checked) {
+                label.classList.add('task-done');
+            } else {
+                label.classList.remove('task-done');
+            }
+        }
+
+        // 4. Fake Live Attendance
+        const temanKelas = ["Faqih", "Toik", "Widad", "Dinda", "Alia"];
+        const attendanceTable = document.getElementById("attendanceList");
+        let htmlContent = ``;
+        temanKelas.forEach(nama => {
+            const status = Math.random() > 0.5 ? 'Online' : 'Offline';
+            const color = status === 'Online' ? 'green' : '#888';
+            const icon = status === 'Online' ? '●' : '○';
+            
+            htmlContent += `
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px; font-size:13px;"><i class="far fa-user-circle"></i> ${nama}</td>
+                    <td style="padding: 10px; color:${color}; font-size:11px; font-weight:bold;">${icon} ${status}</td>
+                    <td style="padding: 10px; color:#888; font-size:11px;">Mobile</td>
+                </tr>
+            `;
         });
         attendanceTable.innerHTML = htmlContent;
     </script>
