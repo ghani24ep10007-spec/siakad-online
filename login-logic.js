@@ -47,3 +47,49 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Error: Pastikan ID 'username' dan 'password' sudah benar di file index.html");
     }
 });
+// Mengambil elemen form
+const loginForm = document.getElementById('loginForm');
+const errorMsg = document.getElementById('errorMsg');
+
+// Menangani saat tombol Login diklik
+loginForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Mencegah halaman refresh otomatis
+
+    // Ambil nilai dari input
+    const usernameInput = document.getElementById('username').value;
+    const passwordInput = document.getElementById('password').value;
+
+    // --- DATA LOGIN RAHASIA (Hardcoded) ---
+    // Username bisa: "admin" ATAU "ghani" ATAU "24EP10007"
+    const validUsernames = ['admin', 'ghani', '24EP10007']; 
+    const validPassword = '123'; 
+
+    // Cek kecocokan
+    if (validUsernames.includes(usernameInput) && passwordInput === validPassword) {
+        
+        // JIKA BENAR:
+        // 1. Simpan nama user ke LocalStorage (biar muncul di Dashboard)
+        let namaLengkap = "Mahasiswa";
+        if(usernameInput === 'ghani' || usernameInput === '24EP10007') {
+            namaLengkap = "Rizqi Ghani Adinata";
+        } else {
+            namaLengkap = "Administrator";
+        }
+        
+        localStorage.setItem('namaUser', namaLengkap);
+
+        // 2. Arahkan ke halaman Dashboard
+        // Pastikan file dashboard.html sudah ada di folder yang sama
+        window.location.href = 'dashboard.html';
+
+    } else {
+        // JIKA SALAH:
+        // Tampilkan pesan error berwarna merah
+        errorMsg.style.display = 'block';
+        
+        // Goyangkan form sedikit (opsional, efek visual)
+        const card = document.querySelector('.login-card');
+        card.style.transform = 'translateX(10px)';
+        setTimeout(() => { card.style.transform = 'translateX(0)'; }, 100);
+    }
+});
