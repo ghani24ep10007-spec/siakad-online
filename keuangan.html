@@ -4,25 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keuangan & UKT - SIAKAD</title>
+    
     <link rel="stylesheet" href="style.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        /* --- CSS Tambahan Khusus Halaman Keuangan --- */
-        
-        /* Kotak Virtual Account */
+        /* Layout Grid: Kiri (Konten Utama) & Kanan (Widget) */
+        .finance-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Kolom kiri 2x lebih lebar */
+            gap: 25px;
+        }
+
+        /* Responsive: Di HP jadi 1 kolom ke bawah */
+        @media (max-width: 900px) {
+            .finance-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- Kartu Virtual Account (Desain Premium) --- */
         .va-card {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Gradien Elegan */
             color: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             margin-bottom: 25px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
+        /* Efek Hiasan Lingkaran Transparan */
         .va-card::after {
             content: '';
             position: absolute;
@@ -33,53 +46,51 @@
         }
 
         .va-number {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
-            letter-spacing: 2px;
-            margin: 10px 0;
+            letter-spacing: 3px;
+            margin: 15px 0;
             font-family: 'Courier New', monospace;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .btn-copy {
             background: rgba(255,255,255,0.2);
             border: 1px solid rgba(255,255,255,0.4);
             color: white;
-            padding: 5px 15px;
+            padding: 8px 15px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 12px;
             transition: 0.3s;
+            display: flex; align-items: center; gap: 5px;
         }
-        .btn-copy:hover { background: white; color: #1e3c72; }
+        .btn-copy:hover { background: white; color: #0f2027; font-weight: bold; }
 
-        /* Badge Status Pembayaran */
-        .status-badge {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-        .status-lunas { background-color: #d1e7dd; color: #0f5132; }
-        .status-pending { background-color: #fff3cd; color: #664d03; }
-        .status-gagal { background-color: #f8d7da; color: #842029; }
-
-        /* Tabel Styling */
+        /* --- Tabel & Badge Status --- */
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th { background: #f8f9fa; padding: 12px; text-align: left; color: #555; font-size: 13px; border-bottom: 2px solid #ddd; }
         td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; color: #444; }
         
-        .btn-action {
-            background: #f0f0f0; border: none; padding: 6px 10px; border-radius: 5px; cursor: pointer; color: #555; transition: 0.2s;
-        }
-        .btn-action:hover { background: #1a4d2e; color: white; }
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .status-lunas { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+        .status-pending { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
 
-        /* Layout Grid Khusus */
-        .finance-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr; /* Kiri lebar, Kanan sempit */
-            gap: 25px;
+        .btn-download {
+            background: #f0f0f0; border: none; padding: 8px 12px; border-radius: 6px; 
+            cursor: pointer; color: #555; transition: 0.2s;
         }
-        @media (max-width: 900px) { .finance-grid { grid-template-columns: 1fr; } }
+        .btn-download:hover { background: #1a4d2e; color: white; }
+
+        /* Widget Info Pembayaran */
+        .payment-summary {
+            background: white; padding: 30px 20px; border-radius: 15px; 
+            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px;
+        }
+        .check-icon {
+            width: 70px; height: 70px; background: #e8f5e9; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+        }
     </style>
 </head>
 <body>
@@ -114,8 +125,8 @@
                 <h1>Keuangan & UKT</h1>
                 <p>Cek tagihan dan riwayat pembayaran semester</p>
             </div>
-            <div style="background: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <i class="fas fa-university"></i> Semester 5 (Ganjil 2025)
+            <div style="background: white; padding: 8px 20px; border-radius: 25px; font-size: 13px; color: #555; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-university" style="color: #1a4d2e;"></i> <b>Semester 5</b> (Ganjil 2025/2026)
             </div>
         </div>
 
@@ -125,23 +136,29 @@
                 
                 <div class="va-card">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:12px; opacity:0.8;">Bank BRI (BRIVA)</span>
-                        <i class="fas fa-credit-card" style="font-size:20px; opacity:0.5;"></i>
+                        <span style="font-size:14px; opacity:0.9;"><i class="fas fa-building"></i> Bank BRI (BRIVA)</span>
+                        <i class="fab fa-cc-visa" style="font-size:24px; opacity:0.6;"></i>
                     </div>
+                    
                     <div class="va-number" id="vaCode">8888 0123 4567 8900</div>
-                    <div style="display:flex; gap:10px; align-items:center;">
-                        <span style="font-size:12px;">a.n Rizqi Ghani Adinata</span>
+                    
+                    <div style="display:flex; gap:15px; align-items:center;">
+                        <span style="font-size:13px;">a.n Rizqi Ghani Adinata</span>
                         <button class="btn-copy" onclick="copyVA()">
-                            <i class="far fa-copy"></i> Salin Nomor
+                            <i class="far fa-copy"></i> Salin
                         </button>
                     </div>
-                    <p style="font-size:11px; margin-top:15px; opacity:0.7;">*Pembayaran diverifikasi otomatis 1x24 jam.</p>
+                    <p style="font-size:11px; margin-top:20px; opacity:0.7; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                        *Pembayaran akan terverifikasi otomatis dalam 1x24 jam. Simpan bukti transfer.
+                    </p>
                 </div>
 
                 <div class="content-card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                        <h3 style="color:#1b4332; font-weight:700;">Riwayat Transaksi</h3>
-                        <button class="btn-action" onclick="window.print()"><i class="fas fa-print"></i> Cetak Laporan</button>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h3 style="color:#1b4332; font-weight:700;">Riwayat Pembayaran</h3>
+                        <button style="border:1px solid #ddd; background:white; padding:5px 10px; border-radius:5px; cursor:pointer;" onclick="window.print()">
+                            <i class="fas fa-print"></i> Cetak
+                        </button>
                     </div>
                     
                     <div style="overflow-x:auto;">
@@ -165,7 +182,7 @@
                                     <td>Rp 3.500.000</td>
                                     <td>20 Agt 2025</td>
                                     <td><span class="status-badge status-lunas">LUNAS</span></td>
-                                    <td style="text-align:center;"><button class="btn-action"><i class="fas fa-download"></i></button></td>
+                                    <td style="text-align:center;"><button class="btn-download"><i class="fas fa-download"></i></button></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
@@ -174,7 +191,7 @@
                                     <td>Rp 250.000</td>
                                     <td>22 Agt 2025</td>
                                     <td><span class="status-badge status-lunas">LUNAS</span></td>
-                                    <td style="text-align:center;"><button class="btn-action"><i class="fas fa-download"></i></button></td>
+                                    <td style="text-align:center;"><button class="btn-download"><i class="fas fa-download"></i></button></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
@@ -183,7 +200,7 @@
                                     <td>Rp 3.500.000</td>
                                     <td>15 Jan 2025</td>
                                     <td><span class="status-badge status-lunas">LUNAS</span></td>
-                                    <td style="text-align:center;"><button class="btn-action"><i class="fas fa-download"></i></button></td>
+                                    <td style="text-align:center;"><button class="btn-download"><i class="fas fa-download"></i></button></td>
                                 </tr>
                                 </tbody>
                         </table>
@@ -192,40 +209,50 @@
             </div>
 
             <div class="right-section">
-                <div class="content-card mb-3" style="text-align:center; padding:30px 20px; margin-bottom: 25px;">
-                    <div style="width:70px; height:70px; background:#e8f5e9; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px;">
-                        <i class="fas fa-check" style="font-size:30px; color:#2e7d32;"></i>
+                
+                <div class="payment-summary">
+                    <div class="check-icon">
+                        <i class="fas fa-check" style="font-size:35px; color:#2e7d32;"></i>
                     </div>
                     <h3 style="color:#2e7d32; margin-bottom:5px;">LUNAS</h3>
                     <p style="color:#666; font-size:13px;">Tidak ada tagihan aktif untuk Semester 5.</p>
                 </div>
 
                 <div class="content-card">
-                    <h4 style="font-size:15px; border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:15px;">Rincian Biaya</h4>
+                    <h4 style="font-size:15px; border-bottom:1px solid #eee; padding-bottom:15px; margin-bottom:15px; color:#333;">
+                        <i class="fas fa-file-invoice-dollar"></i> Rincian Biaya
+                    </h4>
                     
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:13px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:13px;">
                         <span style="color:#666;">UKT Tetap</span>
                         <span style="font-weight:bold;">Rp 3.500.000</span>
                     </div>
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:13px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:13px;">
                         <span style="color:#666;">Biaya SKS (22x0)</span>
                         <span style="font-weight:bold;">Rp 0</span>
                     </div>
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:13px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:13px;">
                         <span style="color:#666;">Praktikum</span>
                         <span style="font-weight:bold;">Rp 250.000</span>
                     </div>
-                    <hr style="border:0; border-top:1px dashed #ddd; margin:10px 0;">
-                    <div style="display:flex; justify-content:space-between; font-size:14px; color:#1b4332;">
-                        <strong>Total Semester 5</strong>
+                    
+                    <hr style="border:0; border-top:2px dashed #eee; margin:15px 0;">
+                    
+                    <div style="display:flex; justify-content:space-between; font-size:15px; color:#1b4332;">
+                        <strong>Total Tagihan</strong>
                         <strong>Rp 3.750.000</strong>
                     </div>
                 </div>
 
-                <div style="margin-top:25px; background:#fff3cd; padding:15px; border-radius:10px; font-size:12px; color:#856404; border:1px solid #ffeeba;">
-                    <i class="fas fa-info-circle"></i> <b>Kendala Pembayaran?</b><br>
-                    Hubungi Bagian Keuangan (BAUK)<br>
-                    <i class="fab fa-whatsapp"></i> +62 812-3456-7890
+                <div style="margin-top:25px; background:#fff8e1; padding:20px; border-radius:15px; font-size:13px; color:#856404; border:1px solid #ffeeba;">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <i class="fas fa-headset" style="font-size:20px;"></i> <b>Butuh Bantuan?</b>
+                    </div>
+                    Hubungi Bagian Keuangan (BAUK):
+                    <br>
+                    <a href="#" style="text-decoration:none; color:#2e7d32; font-weight:bold; display:block; margin-top:5px;">
+                        <i class="fab fa-whatsapp"></i> +62 812-3456-7890
+                    </a>
                 </div>
             </div>
 
@@ -235,9 +262,9 @@
 
     <script>
         function copyVA() {
-            const vaText = document.getElementById("vaCode").innerText;
+            const vaText = document.getElementById("vaCode").innerText.replace(/\s/g, ''); // Hapus spasi saat copy
             navigator.clipboard.writeText(vaText).then(() => {
-                alert("Nomor Virtual Account berhasil disalin!");
+                alert("Nomor Virtual Account berhasil disalin: " + vaText);
             });
         }
     </script>
