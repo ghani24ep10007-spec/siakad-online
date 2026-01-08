@@ -4,119 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SIAKAD UNUGHA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         /* --- CSS DASAR (RESET) --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
         /* --- LAYOUT UTAMA --- */
         body {
-            background-color: #f4f6f9; /* Warna background abu-abu muda lembut */
+            background-color: #f4f6f9;
             display: flex;
-            justify-content: center; /* Tengah secara horizontal */
-            align-items: center;     /* Tengah secara vertikal */
-            min-height: 100vh;       /* Tinggi minimal setinggi layar */
-            padding: 20px;           /* Jarak aman di layar HP kecil */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         /* --- KOTAK LOGIN (CARD) --- */
         .login-card {
             background-color: #ffffff;
             width: 100%;
-            max-width: 400px; /* Lebar maksimal agar tidak terlalu lebar di PC */
+            max-width: 400px;
             padding: 40px;
-            border-radius: 12px;     /* Sudut melengkung */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- HEADER (LOGO & JUDUL) --- */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        /* --- HEADER --- */
+        .header { text-align: center; margin-bottom: 30px; }
         
-        /* Jika Anda punya logo gambar, atur di sini */
-        .logo-img {
-            max-width: 100px;
-            margin-bottom: 15px;
+        .logo-placeholder {
+            font-size: 50px;
+            color: #1a4d2e;
+            margin-bottom: 10px;
         }
 
-        .header h2 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-            font-size: 1.5rem;
-        }
-
-        .header p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
+        .logo-img { max-width: 100px; margin-bottom: 15px; }
+        .header h2 { color: #2c3e50; margin-bottom: 5px; font-size: 1.5rem; font-weight: 800; }
+        .header p { color: #7f8c8d; font-size: 0.9rem; letter-spacing: 1px; }
 
         /* --- FORM INPUT --- */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #34495e;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #34495e; font-weight: 600; font-size: 0.9rem; }
+        
         .form-group input {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #27ae60; /* Warna hijau saat diklik */
+            border-color: #27ae60;
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
         }
 
         /* --- TOMBOL LOGIN --- */
         .btn-login {
             width: 100%;
             padding: 12px;
-            background-color: #27ae60; /* Hijau UNUGHA */
+            background-color: #1a4d2e; /* Hijau Tua UNUGHA */
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         .btn-login:hover {
-            background-color: #219150;
+            background-color: #143823;
+            transform: translateY(-2px);
         }
 
-        /* --- FOOTER --- */
-        .footer {
+        /* --- ALERT ERROR --- */
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: #bdc3c7;
+            margin-bottom: 15px;
+            display: none; /* Sembunyikan defaultnya */
         }
 
-        /* --- RESPONSIF KHUSUS HP KECIL (MEDIA QUERY) --- */
+        /* --- MEDIA QUERY --- */
         @media (max-width: 480px) {
-            .login-card {
-                padding: 25px; /* Mengurangi padding agar muat di layar sempit */
-            }
-            .header h2 {
-                font-size: 1.3rem;
-            }
+            .login-card { padding: 25px; }
+            .header h2 { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -124,28 +101,40 @@
 
     <div class="login-card">
         <div class="header">
-            <img src="https://ghani24ep10007-spec.github.io/siakad-online/assets/logo.png" alt="Logo UNUGHA" class="logo-img" onerror="this.style.display='none'">
+            <img src="https://ghani24ep10007-spec.github.io/siakad-online/assets/logo.png" 
+                 alt="Logo UNUGHA" 
+                 class="logo-img" 
+                 onerror="this.style.display='none'; document.getElementById('fallback-icon').style.display='block';">
+            
+            <div id="fallback-icon" class="logo-placeholder" style="display:none;">
+                <i class="fas fa-university"></i>
+            </div>
+
             <h2>SIAKAD</h2>
             <p>UNUGHA CILACAP</p>
         </div>
 
+        <p id="errorMsg" class="error-message"><i class="fas fa-exclamation-circle"></i> Username atau Password salah!</p>
+
         <form id="loginForm"> 
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="ghani" placeholder="username" required>
+            <div class="form-group">
+                <label for="username">Username / NIM</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan NIM Anda" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
+            </div>
+
+            <button type="submit" class="btn-login">LOGIN MASUK <i class="fas fa-arrow-right" style="margin-left:5px;"></i></button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #888;">
+            &copy; 2026 Rizqi Ghani Adinata
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="123" placeholder="password" required>
-    </div>
-
-    <button type="submit" class="btn-login">LOGIN MASUK</button>
-</form>
-
-<script src="login-logic.js"></script>
-</body>
-</html>
-
+    <script src="login-logic.js"></script>
 </body>
 </html>
