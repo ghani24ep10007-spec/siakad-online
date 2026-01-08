@@ -321,50 +321,58 @@
         
         const userName = localStorage.getItem("namaUser") || "Mahasiswa";
         document.getElementById("welcomeName").innerText = userName;
-        document.getElementById("sidebarName").innerText = userName; // Set nama di sidebar juga
+        
+        // Cek jika elemen sidebarName ada sebelum diisi (mencegah error di halaman lain)
+        if(document.getElementById("sidebarName")) {
+            document.getElementById("sidebarName").innerText = userName; 
+        }
 
         // 2. Logic Chart.js (Grafik IPK)
-        const ctx = document.getElementById('ipkChart').getContext('2d');
-        
-        // Deteksi warna untuk Dark Mode Support di Chart
-        const isDark = document.body.classList.contains('dark-mode');
-        const gridColor = isDark ? '#333' : '#eee';
-        const textColor = isDark ? '#ccc' : '#666';
+        // Pastikan elemen canvas ada sebelum dijalankan
+        const canvasIPK = document.getElementById('ipkChart');
+        if (canvasIPK) {
+            const ctx = canvasIPK.getContext('2d');
+            
+            // Deteksi warna untuk Dark Mode Support di Chart
+            const isDark = document.body.classList.contains('dark-mode');
+            const gridColor = isDark ? '#333' : '#eee';
+            const textColor = isDark ? '#ccc' : '#666';
 
-        const ipkChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Sem 1', 'Sem 2', 'Sem 3'],
-                datasets: [{
-                    label: 'Indeks Prestasi',
-                    data: [3.45, 3.60, 3.85],
-                    borderColor: '#1a4d2e',
-                    backgroundColor: 'rgba(26, 77, 46, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#fff',
-                    pointBorderColor: '#1a4d2e',
-                    pointRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: { 
-                        beginAtZero: false, min: 2.0, max: 4.0, 
-                        grid: { borderDash: [5, 5], color: gridColor },
-                        ticks: { color: textColor }
-                    },
-                    x: { 
-                        grid: { display: false },
-                        ticks: { color: textColor }
-                    }
+            const ipkChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Sem 1', 'Sem 2', 'Sem 3'],
+                    datasets: [{
+                        label: 'Indeks Prestasi',
+                        data: [3.45, 3.60, 3.85],
+                        borderColor: '#1a4d2e',
+                        backgroundColor: 'rgba(26, 77, 46, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#1a4d2e',
+                        pointRadius: 5
+                    }]
                 },
-                plugins: { legend: { display: false } }
-            }
-        });
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { 
+                            beginAtZero: false, min: 2.0, max: 4.0, 
+                            grid: { borderDash: [5, 5], color: gridColor },
+                            ticks: { color: textColor }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: { color: textColor }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
 
         // 3. Logic Dark Mode Toggle
         function toggleDarkMode() {
@@ -382,7 +390,7 @@
             }
         }
 
-        // Cek LocalStorage saat load untuk ingat tema terakhir
+        // Cek LocalStorage saat load
         if(localStorage.getItem('theme') === 'dark') {
             toggleDarkMode();
         }
@@ -393,13 +401,16 @@
             label.classList.toggle('task-done', checkbox.checked);
         }
 
-        // 5. Logic Live Attendance (Teman Online)
-        const temanKelas = ["Faqih", "Toik", "Widad", "Dinda", "Alia", "Syafa"];
+        // 5. Logic Live Attendance (Teman Online) -> BAGIAN INI YANG DIUBAH
+        // Saya tambahkan Nwalia, Fiki, dan Ghani di sini:
+        const temanKelas = ["Faqih", "Toik", "Widad", "Dinda", "Alia", "Syafa", "Nwalia", "Fiki", "Ghani"];
+        
         const attendanceTable = document.getElementById("attendanceList");
         let htmlContent = ``;
         
         temanKelas.forEach(nama => {
-            const status = Math.random() > 0.4 ? 'Online' : 'Offline';
+            // Logic acak status Online/Offline biar terlihat real
+            const status = Math.random() > 0.3 ? 'Online' : 'Offline'; // Peluang online lebih besar
             const color = status === 'Online' ? '#2e7d32' : 'var(--text-muted)';
             const icon = status === 'Online' ? '●' : '○';
             const bgRow = status === 'Online' ? 'background-color: rgba(46, 125, 50, 0.05);' : '';
@@ -416,7 +427,8 @@
                 </tr>
             `;
         });
-        attendanceTable.innerHTML = htmlContent;
+        
+        if(attendanceTable) {
+            attendanceTable.innerHTML = htmlContent;
+        }
     </script>
-</body>
-</html>
