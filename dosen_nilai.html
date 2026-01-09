@@ -10,23 +10,22 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        /* --- 1. VARIABLE CSS & RESET --- */
+        /* --- 1. CSS VARIABLES & RESET --- */
         :root {
-            --primary: #2c3e50; /* Warna utama sidebar */
-            --accent: #3498db;  /* Warna aksen biru */
-            --success: #27ae60; /* Warna sukses hijau */
-            --warning: #f39c12; /* Warna peringatan oranye */
-            --danger: #e74c3c;  /* Warna bahaya merah */
-            --bg-body: #f0f2f5; /* Background halaman */
-            --bg-card: #ffffff; /* Background kartu/konten */
-            --text-main: #2c3e50; /* Warna teks utama */
-            --text-muted: #7f8c8d; /* Warna teks sekunder */
-            --border: #e0e0e0;  /* Warna border */
-            --shadow: 0 5px 20px rgba(0,0,0,0.05); /* Efek bayangan */
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --bg-body: #f0f2f5;
+            --bg-card: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --border: #e0e0e0;
+            --shadow: 0 5px 20px rgba(0,0,0,0.05);
             --sidebar-width: 260px;
         }
 
-        /* Konfigurasi Mode Gelap */
         .dark-mode {
             --primary: #1a252f;
             --bg-body: #121212;
@@ -87,16 +86,16 @@
             font-size: 22px; color: var(--primary); border: 2px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* --- 4. SECTION STYLES (Logika SPA) --- */
+        /* --- 4. SECTION STYLES (SPA Logic) --- */
         .section-view { display: none; animation: fadeIn 0.4s ease; }
         .section-view.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Styling Kartu */
+        /* Cards */
         .card { background: var(--bg-card); border-radius: 16px; padding: 25px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 25px; position: relative; overflow: hidden; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 25px; }
 
-        /* Styling Kartu Statistik */
+        /* Stats Card */
         .stat-card { padding: 25px; border-radius: 16px; color: white; position: relative; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .stat-card h3 { font-size: 32px; font-weight: 800; margin-bottom: 5px; }
         .stat-card p { font-size: 14px; opacity: 0.9; }
@@ -106,7 +105,7 @@
         .bg-orange { background: linear-gradient(135deg, #f1c40f, #e67e22); }
         .bg-purple { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
 
-        /* Styling Tabel */
+        /* Table */
         .table-responsive { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
         table { width: 100%; border-collapse: collapse; }
         th { background: rgba(0,0,0,0.02); text-align: left; padding: 15px; font-size: 13px; font-weight: 700; color: var(--text-muted); border-bottom: 2px solid var(--border); white-space: nowrap;}
@@ -114,7 +113,7 @@
         tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(0,0,0,0.01); }
 
-        /* Input Nilai */
+        /* Input Scores */
         .input-score { 
             width: 55px; text-align: center; padding: 8px; border: 1px solid var(--border); 
             border-radius: 8px; background: var(--bg-body); color: var(--text-main); font-weight: 600; 
@@ -122,14 +121,14 @@
         }
         .input-score:focus { border-color: var(--success); background: #fff; box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1); outline: none; }
 
-        /* Lencana Nilai (Badge) */
+        /* Badges */
         .badge-grade { 
             width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
             font-weight: 800; color: white; font-size: 14px; margin: 0 auto; box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         .bg-A { background: #27ae60; } .bg-B { background: #3498db; } .bg-C { background: #f1c40f; }
 
-        /* Tools / Search Bar */
+        /* Tools */
         .search-box {
             position: relative; margin-right: 10px;
         }
@@ -139,7 +138,7 @@
         }
         .search-box i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 12px; }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 900px) {
             .sidebar { width: 70px; overflow: hidden; }
             .logo h2, .logo span, .nav-header, .nav-links span { display: none; }
@@ -335,15 +334,14 @@
         // 1. DATA TEMAN-TEMAN (NILAI AMAN, TIDAK ADA E)
         const students = [
             { nim: "24EP10001", name: "Ahmad Faqih", t: 95, ut: 90, ua: 92 },
-            { nim: "24EP10002", name: "M. Toik", t: 88, ut: 85, ua: 85 },
-            { nim: "24EP10003", name: "Widad", t: 90, ut: 92, ua: 94 },
-            { nim: "24EP10004", name: "Dinda", t: 95, ut: 95, ua: 98 },
-            { nim: "24EP10005", name: "Siti Alia", t: 85, ut: 80, ua: 82 },
-            { nim: "24EP10006", name: "Nwalia", t: 88, ut: 88, ua: 88 },
-            { nim: "24EP10007", name: "Syafa", t: 92, ut: 90, ua: 90 },
-            { nim: "24EP10008", name: "Rizqi", t: 85, ut: 82, ua: 85 },
-            { nim: "24EP10009", name: "Ghani", t: 90, ut: 88, ua: 92 },
-            { nim: "24EP10010", name: "Fiki", t: 82, ut: 80, ua: 82 },
+            { nim: "24EP10002", name: "Syafa", t: 92, ut: 90, ua: 90 },
+            { nim: "24EP10003", name: "Siti Alia", t: 85, ut: 80, ua: 82 },
+            { nim: "24EP10004", name: "Fiki", t: 82, ut: 80, ua: 82 },
+            { nim: "24EP10005", name: "Rizqi", t: 85, ut: 82, ua: 85 },
+            { nim: "24EP10006", name: "M. Toik", t: 88, ut: 85, ua: 85 },
+            { nim: "24EP10007", name: "Nwalia", t: 88, ut: 88, ua: 88 },
+            { nim: "24EP10008", name: "Widad", t: 90, ut: 92, ua: 94 },
+            { nim: "24EP10009", name: "Dinda", t: 95, ut: 95, ua: 98 },
         ];
 
         // 2. SPA NAVIGATION LOGIC
