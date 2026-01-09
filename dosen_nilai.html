@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIAKAD Dosen Pro - Bu Ihda</title>
+    <title>SIAKAD Dosen Pro - Bu Inda</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         :root {
-            --bg-sidebar: #34495e;
+            --bg-sidebar: #2c3e50;
             --bg-body: #f4f7f6;
             --accent: #3498db;
             --white: #ffffff;
@@ -25,16 +25,16 @@
             overflow-x: hidden;
         }
 
-        /* SIDEBAR STYLING */
+        /* --- SIDEBAR STYLING --- */
         .sidebar {
             width: 250px;
             height: 100vh;
-            background-color: #2c3e50;
+            background-color: var(--bg-sidebar);
             color: var(--text-light);
             position: sticky;
             top: 0;
             transition: 0.3s;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo-section { 
@@ -42,7 +42,6 @@
             text-align: center; 
             font-weight: bold; 
             font-size: 1.1rem;
-            letter-spacing: 1px;
             border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
 
@@ -72,7 +71,7 @@
 
         .menu-item i { margin-right: 15px; width: 20px; text-align: center; }
 
-        /* MAIN CONTENT STYLING */
+        /* --- MAIN CONTENT --- */
         .main-content { flex-grow: 1; padding: 30px; }
         
         .header-dash { 
@@ -82,7 +81,7 @@
             margin-bottom: 30px; 
         }
 
-        /* STATS CARDS */
+        /* STATS GRID */
         .stats-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -103,10 +102,8 @@
         .card-stat p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
         .card-stat i { 
             position: absolute; 
-            right: -10px; 
-            bottom: -10px; 
-            font-size: 80px; 
-            opacity: 0.2; 
+            right: -10px; bottom: -10px; 
+            font-size: 80px; opacity: 0.2; 
         }
 
         .bg-blue { background: #3498db; }
@@ -114,7 +111,7 @@
         .bg-yellow { background: #f1c40f; }
         .bg-purple { background: #9b59b6; }
 
-        /* CONTENT SECTIONS */
+        /* CONTENT GRID */
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
         .card-white { 
             background: var(--white); 
@@ -129,7 +126,7 @@
 
         .badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; background: #e1f5fe; color: #039be5; }
 
-        /* RESPONSIVE */
+        /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .content-grid { grid-template-columns: 1fr; }
             .sidebar { width: 75px; }
@@ -145,7 +142,7 @@
         <div class="logo-section">SIAKAD PRO</div>
         <nav>
             <span class="menu-label">Utama</span>
-            <a href="#" class="menu-item active">
+            <a href="dashboard.html" class="menu-item active">
                 <i class="fas fa-th-large"></i> 
                 <span class="menu-text">Dashboard</span>
             </a>
@@ -155,7 +152,7 @@
             </a>
 
             <span class="menu-label">Akademik</span>
-            <a href="#" class="menu-item">
+            <a href="dosen_nilai.html" class="menu-item">
                 <i class="fas fa-edit"></i> 
                 <span class="menu-text">Input Nilai</span>
             </a>
@@ -165,7 +162,7 @@
             </a>
 
             <span class="menu-label">User</span>
-            <a href="#" class="menu-item" style="color: #e74c3c;">
+            <a href="login.html" class="menu-item" style="color: #e74c3c;">
                 <i class="fas fa-sign-out-alt"></i> 
                 <span class="menu-text">Logout</span>
             </a>
@@ -209,7 +206,7 @@
 
         <div class="content-grid">
             <div class="card-white animate__animated animate__slideInLeft">
-                <h4 style="margin-top:0; border-bottom: 2px solid #f4f7f6; padding-bottom: 10px;">Jadwal Hari Ini</h4>
+                <h4 style="margin:0; border-bottom: 2px solid #f4f7f6; padding-bottom: 10px;">Jadwal Hari Ini</h4>
                 <table>
                     <thead>
                         <tr>
@@ -237,14 +234,14 @@
             </div>
 
             <div class="card-white animate__animated animate__slideInRight">
-                <h4 style="margin-top:0; border-bottom: 2px solid #f4f7f6; padding-bottom: 10px;">Notifikasi</h4>
-                <div style="border-left: 4px solid #3498db; padding: 10px 15px; margin-bottom: 20px; background: #f8fbff;">
+                <h4 style="margin:0; border-bottom: 2px solid #f4f7f6; padding-bottom: 10px;">Notifikasi</h4>
+                <div style="border-left: 4px solid #3498db; padding: 10px 15px; margin: 15px 0; background: #f8fbff;">
                     <small style="color: #7f8c8d; font-weight: bold;">BATAS INPUT NILAI</small>
-                    <p style="margin: 5px 0; font-size: 13px; color: #34495e;">Harap input nilai sebelum tanggal 20 Januari 2026.</p>
+                    <p style="margin: 5px 0; font-size: 13px;">Harap input nilai sebelum tanggal 20 Januari 2026.</p>
                 </div>
                 <div style="border-left: 4px solid #f1c40f; padding: 10px 15px; background: #fffdf2;">
                     <small style="color: #7f8c8d; font-weight: bold;">PERWALIAN</small>
-                    <p style="margin: 5px 0; font-size: 13px; color: #34495e;">3 Mahasiswa mengajukan validasi KRS semester genap.</p>
+                    <p style="margin: 5px 0; font-size: 13px;">3 Mahasiswa mengajukan validasi KRS.</p>
                 </div>
             </div>
         </div>
