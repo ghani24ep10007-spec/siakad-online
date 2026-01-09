@@ -93,7 +93,6 @@
             margin-bottom: 40px;
         }
 
-        /* Menambahkan kursor pointer agar terlihat bisa diklik */
         .stat-card-link { text-decoration: none; display: block; }
 
         .stat-card {
@@ -131,9 +130,7 @@
         th { text-align: left; padding: 15px; border-bottom: 2px solid #f8f9fa; color: #95a5a6; font-size: 12px; }
         td { padding: 15px; border-bottom: 1px solid #f8f9fa; font-size: 14px; color: #34495e; }
 
-        /* Link dalam tabel */
         .table-link { color: var(--accent); text-decoration: none; font-weight: 600; }
-        .table-link:hover { text-decoration: underline; }
 
         .status-badge {
             background: #e1f5fe;
@@ -143,9 +140,7 @@
             font-size: 12px;
             text-decoration: none;
         }
-        .status-badge:hover { background: #b3e5fc; }
 
-        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .content-grid { grid-template-columns: 1fr; }
             .sidebar { width: 80px; }
@@ -161,18 +156,18 @@
         <div class="logo-section">SIAKAD PRO</div>
         
         <span class="menu-label">Utama</span>
-        <a href="dashboard.html" class="menu-item active">
+        <a href="dashboard.html" class="menu-item">
             <i class="fas fa-chart-pie"></i> <span class="menu-text">Dashboard</span>
         </a>
-        <a href="transkrip.html" class="menu-item">
+        <a href="dashboard.html" class="menu-item">
             <i class="fas fa-calendar-day"></i> <span class="menu-text">Jadwal Manager</span>
         </a>
 
         <span class="menu-label">Akademik</span>
-        <a href="dosen_nilai.html" class="menu-item">
+        <a href="dosen_nilai.html" class="menu-item active">
             <i class="fas fa-file-signature"></i> <span class="menu-text">Input Nilai</span>
         </a>
-        <a href="profil.html" class="menu-item">
+        <a href="dosen_nilai.html" class="menu-item">
             <i class="fas fa-user-check"></i> <span class="menu-text">Perwalian</span>
         </a>
 
@@ -188,32 +183,32 @@
                 <h1 style="margin:0; font-size: 24px;">Dashboard Dosen</h1>
                 <p style="color: #7f8c8d; margin-top: 5px;">Selamat datang kembali, Ibu Inda.</p>
             </div>
-            <a href="profil.html" style="text-align: right; text-decoration: none; color: inherit;">
-                <div style="font-weight: 600;">Ibu Inda, M.Kom. <i class="fas fa-chevron-down" style="font-size: 10px;"></i></div>
+            <div style="text-align: right; color: inherit;">
+                <div style="font-weight: 600;">Ibu Inda, M.Kom.</div>
                 <div style="font-size: 12px; color: #95a5a6;">NIDN. 200301001</div>
-            </a>
+            </div>
         </header>
 
         <div class="stats-wrapper animate__animated animate__fadeInUp">
-            <a href="akademik.html" class="stat-card-link">
+            <a href="dashboard.html" class="stat-card-link">
                 <div class="stat-card">
                     <div class="stat-info"><h3>4</h3><p>Kelas Ajar</p></div>
                     <i class="fas fa-door-open stat-icon" style="color: var(--accent);"></i>
                 </div>
             </a>
-            <a href="skripsi.html" class="stat-card-link">
+            <a href="dashboard.html" class="stat-card-link">
                 <div class="stat-card">
                     <div class="stat-info"><h3>142</h3><p>Total Mahasiswa</p></div>
                     <i class="fas fa-user-friends stat-icon" style="color: #2ecc71;"></i>
                 </div>
             </a>
-            <a href="profil.html" class="stat-card-link">
+            <a href="dashboard.html" class="stat-card-link">
                 <div class="stat-card">
                     <div class="stat-info"><h3>10</h3><p>Anak Wali</p></div>
                     <i class="fas fa-graduation-cap stat-icon" style="color: #f1c40f;"></i>
                 </div>
             </a>
-            <a href="transkrip.html" class="stat-card-link">
+            <a href="dashboard.html" class="stat-card-link">
                 <div class="stat-card">
                     <div class="stat-info"><h3>3.80</h3><p>Rata-rata IPK</p></div>
                     <i class="fas fa-chart-line stat-icon" style="color: #9b59b6;"></i>
@@ -236,15 +231,15 @@
                     <tbody>
                         <tr>
                             <td>08:00 - 10:30</td>
-                            <td><a href="akademik.html" class="table-link">Pemrograman Web Dasar</a></td>
+                            <td><span class="table-link">Pemrograman Web Dasar</span></td>
                             <td>Lab Komputer 2</td>
-                            <td><a href="#" class="status-badge">Reguler A</a></td>
+                            <td><span class="status-badge">Reguler A</span></td>
                         </tr>
                         <tr>
                             <td>13:00 - 15:30</td>
-                            <td><a href="akademik.html" class="table-link">Basis Data Lanjut</a></td>
+                            <td><span class="table-link">Basis Data Lanjut</span></td>
                             <td>Ruang Teori 3</td>
-                            <td><a href="#" class="status-badge">Reguler B</a></td>
+                            <td><span class="status-badge">Reguler B</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -252,18 +247,14 @@
 
             <div class="card-panel animate__animated animate__slideInRight">
                 <h3 style="margin-top:0;">Notifikasi Penting</h3>
-                <a href="keuangan.html" style="text-decoration: none; color: inherit;">
-                    <div style="padding: 15px; border-radius: 10px; background: #fff8e1; border-left: 5px solid #ffc107; margin-bottom: 20px; cursor: pointer;">
-                        <div style="font-weight: 600; font-size: 13px;">Batas Input Nilai <i class="fas fa-external-link-alt" style="font-size: 10px; float: right;"></i></div>
-                        <p style="font-size: 12px; margin: 5px 0;">Selesaikan sebelum 20 Jan 2026.</p>
-                    </div>
-                </a>
-                <a href="profil.html" style="text-decoration: none; color: inherit;">
-                    <div style="padding: 15px; border-radius: 10px; background: #e3f2fd; border-left: 5px solid #2196f3; cursor: pointer;">
-                        <div style="font-weight: 600; font-size: 13px;">Persetujuan KRS <i class="fas fa-external-link-alt" style="font-size: 10px; float: right;"></i></div>
-                        <p style="font-size: 12px; margin: 5px 0;">3 mahasiswa menunggu validasi.</p>
-                    </div>
-                </a>
+                <div style="padding: 15px; border-radius: 10px; background: #fff8e1; border-left: 5px solid #ffc107; margin-bottom: 20px;">
+                    <div style="font-weight: 600; font-size: 13px;">Batas Input Nilai</div>
+                    <p style="font-size: 12px; margin: 5px 0;">Selesaikan sebelum 20 Jan 2026.</p>
+                </div>
+                <div style="padding: 15px; border-radius: 10px; background: #e3f2fd; border-left: 5px solid #2196f3;">
+                    <div style="font-weight: 600; font-size: 13px;">Persetujuan KRS</div>
+                    <p style="font-size: 12px; margin: 5px 0;">3 mahasiswa menunggu validasi.</p>
+                </div>
             </div>
         </div>
     </main>
