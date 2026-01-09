@@ -104,6 +104,7 @@
             color: #f87171 !important; 
             border-top: 1px solid rgba(255,255,255,0.05);
             padding: 20px 25px;
+            margin-top: auto;
         }
 
         /* --- MAIN CONTENT --- */
@@ -227,7 +228,7 @@
         }
     </style>
 </head>
-<body class="animate__animated animate__fadeIn">
+<body>
 
     <nav class="sidebar">
         <div class="logo-section">SIAKAD PRO</div>
@@ -250,11 +251,6 @@
             </a>
             <a href="presensi.html" class="menu-item">
                 <i class="fas fa-clipboard-check"></i> <span class="menu-text">Presensi</span>
-            </a>
-
-            <span class="menu-label">Sistem</span>
-            <a href="profil.html" class="menu-item">
-                <i class="fas fa-user-cog"></i> <span class="menu-text">Pengaturan Akun</span>
             </a>
         </div>
 
@@ -375,10 +371,10 @@
     </main>
 
     <script>
-        // Opsional: Tambahkan logika sederhana untuk active menu
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', function() {
-                document.querySelector('.menu-item.active').classList.remove('active');
+                const activeMenu = document.querySelector('.menu-item.active');
+                if(activeMenu) activeMenu.classList.remove('active');
                 this.classList.add('active');
             });
         });
