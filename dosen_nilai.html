@@ -228,7 +228,7 @@
         }
     </style>
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
 
     <nav class="sidebar">
         <div class="logo-section">SIAKAD PRO</div>
@@ -369,15 +369,5 @@
             </div>
         </div>
     </main>
-
-    <script>
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const activeMenu = document.querySelector('.menu-item.active');
-                if(activeMenu) activeMenu.classList.remove('active');
-                this.classList.add('active');
-            });
-        });
-    </script>
 </body>
 </html>
