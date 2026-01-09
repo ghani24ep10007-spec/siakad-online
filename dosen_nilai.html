@@ -3,150 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIAKAD Dosen Pro - Bu Inda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>SIAKAD Dosen Pro - Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         :root {
-            --bg-sidebar: #2c3e50;
-            --bg-body: #f4f7f6;
-            --accent: #3498db;
+            --bg-sidebar: #1e293b;
+            --bg-body: #f8fafc;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
             --white: #ffffff;
-            --text-light: #ecf0f1;
-            --danger: #e74c3c;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --text-light: #f1f5f9;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --sidebar-width: 260px;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             display: flex;
             background-color: var(--bg-body);
+            color: var(--text-main);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* SIDEBAR NAVIGATION */
+        /* --- SIDEBAR --- */
         .sidebar {
-            width: 260px;
+            width: var(--sidebar-width);
             background-color: var(--bg-sidebar);
             color: var(--text-light);
             display: flex;
             flex-direction: column;
-            position: sticky;
-            top: 0;
+            position: fixed;
             height: 100vh;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
         }
 
         .logo-section {
-            padding: 30px 20px;
+            padding: 25px;
             text-align: center;
-            font-weight: 600;
-            font-size: 1.2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.2);
+            color: var(--accent);
+        }
+
+        .menu-container {
+            flex: 1;
+            padding: 15px 0;
+            overflow-y: auto;
         }
 
         .menu-label {
-            padding: 25px 25px 10px;
+            padding: 20px 25px 10px;
             font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
-            color: #7f8c8d;
-            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            letter-spacing: 1.2px;
         }
 
         .menu-item {
-            padding: 14px 25px;
+            padding: 12px 25px;
             display: flex;
             align-items: center;
-            color: var(--text-light);
+            color: #cbd5e1;
             text-decoration: none;
-            transition: 0.2s;
-            font-size: 14px;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+            margin-bottom: 4px;
         }
 
-        .menu-item i { width: 25px; margin-right: 12px; text-align: center; }
+        .menu-item i { width: 20px; margin-right: 12px; font-size: 16px; }
 
-        .menu-item:hover, .menu-item.active {
-            background-color: #34495e;
+        .menu-item:hover {
+            background-color: rgba(255,255,255,0.05);
+            color: var(--white);
+        }
+
+        .menu-item.active {
+            background-color: rgba(59, 130, 246, 0.1);
             color: var(--accent);
-            border-left: 4px solid var(--accent);
+            border-left-color: var(--accent);
+            font-weight: 500;
         }
 
-        .logout { color: var(--danger) !important; margin-top: auto; padding-bottom: 30px; }
+        .logout { 
+            color: #f87171 !important; 
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 20px 25px;
+        }
 
-        /* MAIN CONTENT AREA */
-        .main-container { flex: 1; padding: 40px; }
+        /* --- MAIN CONTENT --- */
+        .main-container { 
+            flex: 1; 
+            margin-left: var(--sidebar-width);
+            padding: 40px; 
+            transition: all 0.3s;
+        }
 
         .header-dashboard {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
+            align-items: flex-start;
+            margin-bottom: 35px;
         }
 
-        /* STATS CARDS */
+        .header-title h1 { margin: 0; font-size: 26px; font-weight: 700; color: #1e293b; }
+        .header-title p { margin: 5px 0 0; color: var(--text-muted); }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--white);
+            padding: 8px 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        /* --- STATS --- */
         .stats-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
         }
-
-        .stat-card-link { text-decoration: none; display: block; }
 
         .stat-card {
             background: var(--white);
             padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.2s;
         }
 
-        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-info h3 { margin: 0; font-size: 30px; font-weight: 700; }
+        .stat-info p { margin: 5px 0 0; color: var(--text-muted); font-size: 14px; }
+        
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
 
-        .stat-info h3 { margin: 0; font-size: 28px; color: #2c3e50; }
-        .stat-info p { margin: 5px 0 0; color: #7f8c8d; font-size: 14px; }
-        .stat-icon { font-size: 35px; opacity: 0.2; }
-
-        /* CONTENT GRID */
+        /* --- TABLES & PANELS --- */
         .content-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 30px;
+            gap: 25px;
         }
 
         .card-panel {
             background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { text-align: left; padding: 15px; border-bottom: 2px solid #f8f9fa; color: #95a5a6; font-size: 12px; }
-        td { padding: 15px; border-bottom: 1px solid #f8f9fa; font-size: 14px; color: #34495e; }
+        .card-panel h3 { margin: 0 0 20px; font-size: 18px; color: #1e293b; }
 
-        .table-link { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .table-responsive { overflow-x: auto; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 12px 15px; background: #f8fafc; color: var(--text-muted); font-size: 11px; text-transform: uppercase; }
+        td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
 
         .status-badge {
-            background: #e1f5fe;
-            color: #03a9f4;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            background: #dbeafe;
+            color: #1e40af;
         }
 
+        /* --- NOTIFICATIONS --- */
+        .notif-item {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 12px;
+            border-left: 4px solid transparent;
+        }
+
+        .notif-blue { background: #eff6ff; border-left-color: var(--accent); }
+        .notif-amber { background: #fffbeb; border-left-color: var(--warning); }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .content-grid { grid-template-columns: 1fr; }
             .sidebar { width: 80px; }
             .menu-text, .menu-label, .logo-section { display: none; }
-            .menu-item { justify-content: center; padding: 20px 0; }
-            .menu-item i { margin: 0; font-size: 20px; }
+            .main-container { margin-left: 80px; }
+            .menu-item { justify-content: center; padding: 20px 0; border-left: none; }
+            .menu-item i { margin: 0; font-size: 22px; }
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .main-container { padding: 20px; }
+            .header-dashboard { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
@@ -155,108 +232,156 @@
     <nav class="sidebar">
         <div class="logo-section">SIAKAD PRO</div>
         
-        <span class="menu-label">Utama</span>
-        <a href="dashboard.html" class="menu-item">
-            <i class="fas fa-chart-pie"></i> <span class="menu-text">Dashboard</span>
-        </a>
-        <a href="dashboard.html" class="menu-item">
-            <i class="fas fa-calendar-day"></i> <span class="menu-text">Jadwal Manager</span>
-        </a>
+        <div class="menu-container">
+            <span class="menu-label">Utama</span>
+            <a href="dashboard.html" class="menu-item active">
+                <i class="fas fa-chart-pie"></i> <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="jadwal.html" class="menu-item">
+                <i class="fas fa-calendar-alt"></i> <span class="menu-text">Jadwal Kuliah</span>
+            </a>
 
-        <span class="menu-label">Akademik</span>
-        <a href="dosen_nilai.html" class="menu-item active">
-            <i class="fas fa-file-signature"></i> <span class="menu-text">Input Nilai</span>
-        </a>
-        <a href="dosen_nilai.html" class="menu-item">
-            <i class="fas fa-user-check"></i> <span class="menu-text">Perwalian</span>
-        </a>
+            <span class="menu-label">Akademik</span>
+            <a href="input_nilai.html" class="menu-item">
+                <i class="fas fa-edit"></i> <span class="menu-text">Input Nilai</span>
+            </a>
+            <a href="perwalian.html" class="menu-item">
+                <i class="fas fa-user-graduate"></i> <span class="menu-text">Bimbingan Wali</span>
+            </a>
+            <a href="presensi.html" class="menu-item">
+                <i class="fas fa-clipboard-check"></i> <span class="menu-text">Presensi</span>
+            </a>
 
-        <span class="menu-label">Sistem</span>
-        <a href="login.html" class="menu-item logout">
-            <i class="fas fa-power-off"></i> <span class="menu-text">Logout</span>
+            <span class="menu-label">Sistem</span>
+            <a href="profil.html" class="menu-item">
+                <i class="fas fa-user-cog"></i> <span class="menu-text">Pengaturan Akun</span>
+            </a>
+        </div>
+
+        <a href="logout.php" class="menu-item logout">
+            <i class="fas fa-sign-out-alt"></i> <span class="menu-text">Keluar Sistem</span>
         </a>
     </nav>
 
     <main class="main-container">
-        <header class="header-dashboard animate__animated animate__slideInDown">
-            <div>
-                <h1 style="margin:0; font-size: 24px;">Dashboard Dosen</h1>
-                <p style="color: #7f8c8d; margin-top: 5px;">Selamat datang kembali, Ibu Inda.</p>
+        <header class="header-dashboard">
+            <div class="header-title animate__animated animate__slideInLeft">
+                <h1>Dashboard Dosen</h1>
+                <p>Periode Semester Ganjil 2025/2026</p>
             </div>
-            <div style="text-align: right; color: inherit;">
-                <div style="font-weight: 600;">Ibu Inda, M.Kom.</div>
-                <div style="font-size: 12px; color: #95a5a6;">NIDN. 200301001</div>
+            
+            <div class="user-profile animate__animated animate__slideInRight">
+                <div style="text-align: right;">
+                    <div style="font-weight: 600; font-size: 14px;">Ibu Inda, M.Kom.</div>
+                    <div style="font-size: 12px; color: var(--text-muted);">NIDN. 200301001</div>
+                </div>
+                <img src="https://ui-avatars.com/api/?name=Inda+MKom&background=3b82f6&color=fff" alt="Avatar" style="width: 40px; border-radius: 10px;">
             </div>
         </header>
 
-        <div class="stats-wrapper animate__animated animate__fadeInUp">
-            <a href="dashboard.html" class="stat-card-link">
-                <div class="stat-card">
-                    <div class="stat-info"><h3>4</h3><p>Kelas Ajar</p></div>
-                    <i class="fas fa-door-open stat-icon" style="color: var(--accent);"></i>
+        <div class="stats-wrapper">
+            <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                <div class="stat-info">
+                    <h3>4</h3>
+                    <p>Kelas Aktif</p>
                 </div>
-            </a>
-            <a href="dashboard.html" class="stat-card-link">
-                <div class="stat-card">
-                    <div class="stat-info"><h3>142</h3><p>Total Mahasiswa</p></div>
-                    <i class="fas fa-user-friends stat-icon" style="color: #2ecc71;"></i>
+                <div class="icon-box" style="background: #eff6ff; color: #3b82f6;">
+                    <i class="fas fa-chalkboard-teacher"></i>
                 </div>
-            </a>
-            <a href="dashboard.html" class="stat-card-link">
-                <div class="stat-card">
-                    <div class="stat-info"><h3>10</h3><p>Anak Wali</p></div>
-                    <i class="fas fa-graduation-cap stat-icon" style="color: #f1c40f;"></i>
+            </div>
+            
+            <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <div class="stat-info">
+                    <h3>142</h3>
+                    <p>Total Mahasiswa</p>
                 </div>
-            </a>
-            <a href="dashboard.html" class="stat-card-link">
-                <div class="stat-card">
-                    <div class="stat-info"><h3>3.80</h3><p>Rata-rata IPK</p></div>
-                    <i class="fas fa-chart-line stat-icon" style="color: #9b59b6;"></i>
+                <div class="icon-box" style="background: #f0fdf4; color: #22c55e;">
+                    <i class="fas fa-users"></i>
                 </div>
-            </a>
+            </div>
+
+            <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                <div class="stat-info">
+                    <h3>10</h3>
+                    <p>Mahasiswa Wali</p>
+                </div>
+                <div class="icon-box" style="background: #fffbeb; color: #f59e0b;">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+            </div>
+
+            <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                <div class="stat-info">
+                    <h3>3.80</h3>
+                    <p>Rata-rata IPK Wali</p>
+                </div>
+                <div class="icon-box" style="background: #faf5ff; color: #a855f7;">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+            </div>
         </div>
 
         <div class="content-grid">
-            <div class="card-panel animate__animated animate__slideInLeft">
-                <h3 style="margin-top:0;">Jadwal Mengajar Hari Ini</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>WAKTU</th>
-                            <th>MATA KULIAH</th>
-                            <th>RUANG</th>
-                            <th>KELAS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>08:00 - 10:30</td>
-                            <td><span class="table-link">Pemrograman Web Dasar</span></td>
-                            <td>Lab Komputer 2</td>
-                            <td><span class="status-badge">Reguler A</span></td>
-                        </tr>
-                        <tr>
-                            <td>13:00 - 15:30</td>
-                            <td><span class="table-link">Basis Data Lanjut</span></td>
-                            <td>Ruang Teori 3</td>
-                            <td><span class="status-badge">Reguler B</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="card-panel animate__animated animate__fadeInLeft">
+                <h3>Jadwal Mengajar Hari Ini</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Jam</th>
+                                <th>Mata Kuliah</th>
+                                <th>Ruang</th>
+                                <th>Kelas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 500;">08:00 - 10:30</td>
+                                <td><strong style="color: var(--accent);">Pemrograman Web Dasar</strong></td>
+                                <td>Lab. Komputer 02</td>
+                                <td><span class="status-badge">REG-A</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">13:00 - 15:30</td>
+                                <td><strong style="color: var(--accent);">Basis Data Lanjut</strong></td>
+                                <td>Ruang Teori 03</td>
+                                <td><span class="status-badge">REG-B</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="card-panel animate__animated animate__slideInRight">
-                <h3 style="margin-top:0;">Notifikasi Penting</h3>
-                <div style="padding: 15px; border-radius: 10px; background: #fff8e1; border-left: 5px solid #ffc107; margin-bottom: 20px;">
-                    <div style="font-weight: 600; font-size: 13px;">Batas Input Nilai</div>
-                    <p style="font-size: 12px; margin: 5px 0;">Selesaikan sebelum 20 Jan 2026.</p>
+            <div class="card-panel animate__animated animate__fadeInRight">
+                <h3>Info Akademik</h3>
+                
+                <div class="notif-item notif-amber">
+                    <i class="fas fa-exclamation-circle" style="color: var(--warning); margin-top: 3px;"></i>
+                    <div>
+                        <div style="font-weight: 600; font-size: 14px;">Batas Input Nilai UAS</div>
+                        <p style="font-size: 12px; margin: 5px 0; color: #92400e;">Sistem akan ditutup otomatis pada 20 Januari 2026 pukul 23:59.</p>
+                    </div>
                 </div>
-                <div style="padding: 15px; border-radius: 10px; background: #e3f2fd; border-left: 5px solid #2196f3;">
-                    <div style="font-weight: 600; font-size: 13px;">Persetujuan KRS</div>
-                    <p style="font-size: 12px; margin: 5px 0;">3 mahasiswa menunggu validasi.</p>
+
+                <div class="notif-item notif-blue">
+                    <i class="fas fa-info-circle" style="color: var(--accent); margin-top: 3px;"></i>
+                    <div>
+                        <div style="font-weight: 600; font-size: 14px;">Validasi KRS</div>
+                        <p style="font-size: 12px; margin: 5px 0; color: #1e40af;">Ada 3 mahasiswa bimbingan yang baru mengajukan KRS.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <script>
+        // Opsional: Tambahkan logika sederhana untuk active menu
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.menu-item.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
